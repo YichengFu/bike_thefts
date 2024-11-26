@@ -1,5 +1,5 @@
 ---
-title: "Exploring Urban Patterns in Bicycle Theft: Identifying Key Predictors and Trends"
+title: "Understanding Urban Bicycle Theft: Identifying Key Predictors for Risk Assessment"
 subtitle: "An Analysis of Bicycle Theft Patterns and Predictors in Toronto"
 author: 
   - Tommy Fu

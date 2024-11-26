@@ -1,152 +1,501 @@
-division,state,party
-Division 1,Victoria,Liberal
-Division 2,New South Wales,Liberal
-Division 3,Tasmania,Liberal
-Division 4,New South Wales,Liberal
-Division 5,Queensland,Liberal
-Division 6,New South Wales,Labor
-Division 7,Victoria,Liberal
-Division 8,Western Australia,Labor
-Division 9,Western Australia,Greens
-Division 10,Queensland,Labor
-Division 11,Queensland,Labor
-Division 12,Northern Territory,Liberal
-Division 13,New South Wales,Labor
-Division 14,Western Australia,Labor
-Division 15,Western Australia,National
-Division 16,Victoria,Liberal
-Division 17,South Australia,Liberal
-Division 18,Victoria,Liberal
-Division 19,Western Australia,Labor
-Division 20,South Australia,Labor
-Division 21,New South Wales,Liberal
-Division 22,Queensland,Greens
-Division 23,New South Wales,Liberal
-Division 24,New South Wales,Liberal
-Division 25,Queensland,Labor
-Division 26,Victoria,National
-Division 27,New South Wales,Liberal
-Division 28,Queensland,Liberal
-Division 29,Tasmania,Liberal
-Division 30,South Australia,Liberal
-Division 31,New South Wales,Liberal
-Division 32,Victoria,Labor
-Division 33,Tasmania,Liberal
-Division 34,New South Wales,Liberal
-Division 35,Western Australia,Labor
-Division 36,New South Wales,Liberal
-Division 37,Tasmania,Greens
-Division 38,Tasmania,Labor
-Division 39,Victoria,Greens
-Division 40,South Australia,Labor
-Division 41,New South Wales,Other
-Division 42,New South Wales,Other
-Division 43,Tasmania,Labor
-Division 44,Tasmania,National
-Division 45,Queensland,Liberal
-Division 46,Australian Capital Territory,Other
-Division 47,Queensland,Labor
-Division 48,Queensland,Other
-Division 49,South Australia,Liberal
-Division 50,Victoria,National
-Division 51,South Australia,Liberal
-Division 52,Victoria,Labor
-Division 53,South Australia,National
-Division 54,Queensland,Liberal
-Division 55,Queensland,Labor
-Division 56,South Australia,Liberal
-Division 57,New South Wales,Other
-Division 58,Northern Territory,Liberal
-Division 59,New South Wales,Labor
-Division 60,Western Australia,Labor
-Division 61,New South Wales,Liberal
-Division 62,South Australia,Liberal
-Division 63,Queensland,Labor
-Division 64,Tasmania,Labor
-Division 65,South Australia,Labor
-Division 66,Victoria,Labor
-Division 67,Queensland,Liberal
-Division 68,Queensland,Liberal
-Division 69,Tasmania,Labor
-Division 70,South Australia,National
-Division 71,Australian Capital Territory,Labor
-Division 72,Western Australia,Labor
-Division 73,Queensland,National
-Division 74,Victoria,Labor
-Division 75,Western Australia,Labor
-Division 76,Tasmania,Labor
-Division 77,Queensland,Liberal
-Division 78,Western Australia,Liberal
-Division 79,Queensland,Labor
-Division 80,Queensland,Liberal
-Division 81,Victoria,Labor
-Division 82,New South Wales,Liberal
-Division 83,Victoria,Liberal
-Division 84,Queensland,National
-Division 85,Western Australia,Liberal
-Division 86,New South Wales,Labor
-Division 87,Queensland,Liberal
-Division 88,New South Wales,Liberal
-Division 89,Tasmania,Liberal
-Division 90,South Australia,Labor
-Division 91,Victoria,Liberal
-Division 92,New South Wales,Labor
-Division 93,Tasmania,Labor
-Division 94,South Australia,Labor
-Division 95,Victoria,Liberal
-Division 96,Victoria,Labor
-Division 97,Western Australia,Liberal
-Division 98,Queensland,Liberal
-Division 99,South Australia,Liberal
-Division 100,New South Wales,Labor
-Division 101,South Australia,Labor
-Division 102,New South Wales,Labor
-Division 103,Victoria,Labor
-Division 104,Victoria,Labor
-Division 105,South Australia,Other
-Division 106,Western Australia,Labor
-Division 107,Tasmania,Liberal
-Division 108,Victoria,Labor
-Division 109,Queensland,Liberal
-Division 110,Victoria,Labor
-Division 111,Australian Capital Territory,Labor
-Division 112,Victoria,Liberal
-Division 113,Victoria,Liberal
-Division 114,Victoria,Liberal
-Division 115,Tasmania,Labor
-Division 116,Victoria,Labor
-Division 117,New South Wales,Labor
-Division 118,Victoria,Labor
-Division 119,Victoria,Greens
-Division 120,Northern Territory,Labor
-Division 121,South Australia,Liberal
-Division 122,New South Wales,Liberal
-Division 123,New South Wales,Labor
-Division 124,New South Wales,Liberal
-Division 125,New South Wales,National
-Division 126,New South Wales,Labor
-Division 127,Queensland,Labor
-Division 128,New South Wales,Other
-Division 129,Queensland,Labor
-Division 130,Australian Capital Territory,Liberal
-Division 131,Tasmania,Greens
-Division 132,New South Wales,National
-Division 133,New South Wales,Labor
-Division 134,Northern Territory,Labor
-Division 135,South Australia,National
-Division 136,Victoria,Labor
-Division 137,Tasmania,National
-Division 138,South Australia,Liberal
-Division 139,New South Wales,Labor
-Division 140,Victoria,Other
-Division 141,Queensland,Greens
-Division 142,Victoria,National
-Division 143,Western Australia,Labor
-Division 144,Victoria,Labor
-Division 145,Queensland,Liberal
-Division 146,Tasmania,Liberal
-Division 147,South Australia,Liberal
-Division 148,Victoria,Labor
-Division 149,New South Wales,National
-Division 150,New South Wales,Labor
-Division 151,Victoria,Liberal
+"","incident_id","neighborhood","theft_type","day_of_week","time_of_day","bike_value","reported_to_police"
+"1",1,"Downtown Toronto","Locked","Thursday","Evening",2176.01,FALSE
+"2",2,"Downtown Toronto","Locked","Tuesday","Evening",2982.57,TRUE
+"3",3,"West End","Unlocked","Thursday","Night",2961.07,FALSE
+"4",4,"Downtown Toronto","Locked","Tuesday","Afternoon",224.52,FALSE
+"5",5,"East York","Locked","Saturday","Afternoon",788.8,FALSE
+"6",6,"West End","Locked","Sunday","Morning",536.93,TRUE
+"7",7,"East York","Locked","Tuesday","Evening",2499.26,TRUE
+"8",8,"Downtown Toronto","Locked","Friday","Afternoon",2999.69,TRUE
+"9",9,"Scarborough","Unlocked","Monday","Evening",483.12,TRUE
+"10",10,"York","Locked","Sunday","Afternoon",1082.89,FALSE
+"11",11,"Scarborough","Unlocked","Tuesday","Afternoon",2112.35,TRUE
+"12",12,"East York","Unlocked","Wednesday","Morning",1038.56,TRUE
+"13",13,"Downtown Toronto","Locked","Saturday","Evening",1356.17,FALSE
+"14",14,"Scarborough","Unlocked","Sunday","Morning",1007.19,TRUE
+"15",15,"North York","Locked","Monday","Evening",1558.78,TRUE
+"16",16,"East York","Locked","Wednesday","Evening",1534.47,TRUE
+"17",17,"North York","Locked","Saturday","Afternoon",1759.83,TRUE
+"18",18,"East York","Locked","Wednesday","Evening",1815.66,TRUE
+"19",19,"North York","Unlocked","Wednesday","Afternoon",549.96,TRUE
+"20",20,"West End","Unlocked","Friday","Evening",2181.36,TRUE
+"21",21,"North York","Locked","Thursday","Night",1453.36,FALSE
+"22",22,"Scarborough","Locked","Friday","Afternoon",1917.47,FALSE
+"23",23,"Scarborough","Unlocked","Monday","Morning",2608.35,TRUE
+"24",24,"Scarborough","Locked","Saturday","Evening",271.26,TRUE
+"25",25,"Downtown Toronto","Locked","Sunday","Morning",1016.39,TRUE
+"26",26,"Downtown Toronto","Locked","Saturday","Morning",811.29,TRUE
+"27",27,"Downtown Toronto","Partially Secured","Saturday","Evening",323.37,FALSE
+"28",28,"North York","Locked","Sunday","Night",1641.11,FALSE
+"29",29,"Etobicoke","Unlocked","Saturday","Afternoon",1783.88,TRUE
+"30",30,"Etobicoke","Partially Secured","Friday","Afternoon",886.59,TRUE
+"31",31,"Downtown Toronto","Locked","Sunday","Evening",2007.32,FALSE
+"32",32,"Downtown Toronto","Unlocked","Thursday","Afternoon",2215.25,FALSE
+"33",33,"Scarborough","Unlocked","Tuesday","Afternoon",914.72,TRUE
+"34",34,"Downtown Toronto","Locked","Wednesday","Evening",1950.27,FALSE
+"35",35,"Downtown Toronto","Locked","Sunday","Evening",690.68,FALSE
+"36",36,"North York","Locked","Wednesday","Night",359.7,TRUE
+"37",37,"Downtown Toronto","Locked","Friday","Morning",682.07,TRUE
+"38",38,"Scarborough","Locked","Friday","Morning",1797.64,TRUE
+"39",39,"North York","Locked","Saturday","Morning",1908.92,TRUE
+"40",40,"York","Locked","Wednesday","Afternoon",2319.1,TRUE
+"41",41,"Scarborough","Unlocked","Thursday","Evening",619.21,TRUE
+"42",42,"Downtown Toronto","Locked","Monday","Evening",2033.71,TRUE
+"43",43,"North York","Locked","Friday","Night",1712.94,TRUE
+"44",44,"Etobicoke","Locked","Sunday","Evening",1153.46,TRUE
+"45",45,"East York","Partially Secured","Tuesday","Evening",352.91,FALSE
+"46",46,"York","Locked","Wednesday","Night",2958.14,TRUE
+"47",47,"Downtown Toronto","Locked","Tuesday","Evening",614.52,FALSE
+"48",48,"Scarborough","Locked","Friday","Afternoon",2026.87,TRUE
+"49",49,"West End","Locked","Saturday","Evening",1487.14,FALSE
+"50",50,"Downtown Toronto","Unlocked","Saturday","Afternoon",302.23,FALSE
+"51",51,"West End","Partially Secured","Sunday","Afternoon",816.36,FALSE
+"52",52,"North York","Unlocked","Tuesday","Afternoon",2797.09,TRUE
+"53",53,"West End","Locked","Monday","Afternoon",681.03,TRUE
+"54",54,"East York","Partially Secured","Saturday","Afternoon",390.88,FALSE
+"55",55,"Downtown Toronto","Unlocked","Sunday","Afternoon",2589.61,FALSE
+"56",56,"North York","Locked","Monday","Morning",1196.68,TRUE
+"57",57,"North York","Locked","Saturday","Night",1172.94,TRUE
+"58",58,"Scarborough","Unlocked","Friday","Evening",991.24,TRUE
+"59",59,"North York","Locked","Thursday","Evening",593.42,TRUE
+"60",60,"York","Locked","Thursday","Evening",960.72,TRUE
+"61",61,"North York","Unlocked","Sunday","Afternoon",2238.93,TRUE
+"62",62,"Downtown Toronto","Unlocked","Saturday","Morning",2797.48,TRUE
+"63",63,"Scarborough","Locked","Saturday","Night",713.91,FALSE
+"64",64,"Etobicoke","Unlocked","Wednesday","Evening",1486.6,FALSE
+"65",65,"Downtown Toronto","Locked","Sunday","Evening",585.93,FALSE
+"66",66,"East York","Locked","Thursday","Afternoon",2665.31,TRUE
+"67",67,"Downtown Toronto","Locked","Friday","Night",175.48,TRUE
+"68",68,"West End","Partially Secured","Wednesday","Evening",2848.57,TRUE
+"69",69,"Downtown Toronto","Unlocked","Sunday","Evening",147.07,TRUE
+"70",70,"Scarborough","Locked","Wednesday","Evening",2512.8,FALSE
+"71",71,"Downtown Toronto","Unlocked","Saturday","Morning",587.12,TRUE
+"72",72,"North York","Locked","Sunday","Evening",1893.42,FALSE
+"73",73,"North York","Unlocked","Saturday","Afternoon",182.02,TRUE
+"74",74,"Scarborough","Locked","Saturday","Morning",986.57,TRUE
+"75",75,"North York","Locked","Saturday","Afternoon",498.87,TRUE
+"76",76,"Downtown Toronto","Locked","Monday","Afternoon",1216.87,TRUE
+"77",77,"Etobicoke","Locked","Wednesday","Afternoon",1911.26,TRUE
+"78",78,"North York","Unlocked","Monday","Afternoon",406.04,FALSE
+"79",79,"Etobicoke","Unlocked","Wednesday","Evening",417.72,TRUE
+"80",80,"Downtown Toronto","Locked","Sunday","Morning",298.22,FALSE
+"81",81,"Downtown Toronto","Locked","Monday","Evening",549.72,TRUE
+"82",82,"West End","Unlocked","Monday","Morning",2652.79,FALSE
+"83",83,"Downtown Toronto","Locked","Monday","Morning",913.29,FALSE
+"84",84,"North York","Unlocked","Friday","Evening",1066.93,TRUE
+"85",85,"Etobicoke","Locked","Monday","Morning",1301.78,FALSE
+"86",86,"North York","Partially Secured","Monday","Evening",2430.27,TRUE
+"87",87,"North York","Locked","Wednesday","Evening",2653.26,FALSE
+"88",88,"East York","Locked","Monday","Evening",365.79,FALSE
+"89",89,"Scarborough","Locked","Wednesday","Afternoon",1880.23,FALSE
+"90",90,"North York","Unlocked","Thursday","Evening",496.97,TRUE
+"91",91,"Downtown Toronto","Locked","Saturday","Afternoon",2176.49,FALSE
+"92",92,"Downtown Toronto","Locked","Sunday","Afternoon",875.88,TRUE
+"93",93,"West End","Locked","Friday","Morning",2343.93,FALSE
+"94",94,"Etobicoke","Locked","Thursday","Afternoon",1196.17,FALSE
+"95",95,"East York","Locked","Sunday","Afternoon",1406.11,FALSE
+"96",96,"East York","Locked","Thursday","Night",2735.41,TRUE
+"97",97,"Scarborough","Locked","Monday","Evening",1525.43,TRUE
+"98",98,"York","Locked","Friday","Afternoon",202.65,TRUE
+"99",99,"Etobicoke","Unlocked","Thursday","Afternoon",893.07,FALSE
+"100",100,"Scarborough","Locked","Thursday","Night",1795.84,TRUE
+"101",101,"Scarborough","Locked","Wednesday","Evening",1484.15,TRUE
+"102",102,"East York","Locked","Monday","Morning",2335.46,TRUE
+"103",103,"West End","Locked","Tuesday","Morning",1805.25,TRUE
+"104",104,"East York","Unlocked","Sunday","Evening",873.74,FALSE
+"105",105,"Downtown Toronto","Locked","Saturday","Afternoon",312.02,FALSE
+"106",106,"Downtown Toronto","Locked","Thursday","Evening",1819.82,TRUE
+"107",107,"North York","Locked","Wednesday","Evening",2945.85,TRUE
+"108",108,"East York","Locked","Friday","Evening",1750.83,TRUE
+"109",109,"West End","Locked","Monday","Evening",2378.93,FALSE
+"110",110,"Downtown Toronto","Locked","Monday","Evening",1398.2,TRUE
+"111",111,"Downtown Toronto","Unlocked","Friday","Evening",1477.59,FALSE
+"112",112,"Downtown Toronto","Unlocked","Wednesday","Afternoon",602.5,TRUE
+"113",113,"North York","Locked","Wednesday","Morning",2549.56,FALSE
+"114",114,"Scarborough","Unlocked","Sunday","Afternoon",134.58,TRUE
+"115",115,"Downtown Toronto","Unlocked","Saturday","Morning",1582.33,FALSE
+"116",116,"Scarborough","Locked","Thursday","Afternoon",1922.58,TRUE
+"117",117,"Downtown Toronto","Locked","Saturday","Morning",525.14,TRUE
+"118",118,"Scarborough","Locked","Saturday","Afternoon",2120.6,TRUE
+"119",119,"Downtown Toronto","Partially Secured","Thursday","Morning",723.1,FALSE
+"120",120,"Downtown Toronto","Locked","Saturday","Morning",2813.98,TRUE
+"121",121,"Downtown Toronto","Locked","Saturday","Afternoon",2358.81,TRUE
+"122",122,"York","Locked","Monday","Evening",847.63,TRUE
+"123",123,"North York","Locked","Wednesday","Evening",2183.31,TRUE
+"124",124,"East York","Locked","Wednesday","Morning",1456.55,FALSE
+"125",125,"York","Locked","Sunday","Afternoon",2068.3,FALSE
+"126",126,"North York","Unlocked","Sunday","Afternoon",1292.61,TRUE
+"127",127,"Downtown Toronto","Locked","Tuesday","Night",2524.61,TRUE
+"128",128,"Etobicoke","Locked","Monday","Evening",240.77,TRUE
+"129",129,"North York","Unlocked","Thursday","Morning",2441.45,FALSE
+"130",130,"East York","Partially Secured","Sunday","Night",2743.49,TRUE
+"131",131,"East York","Unlocked","Wednesday","Night",2560.71,TRUE
+"132",132,"York","Locked","Tuesday","Evening",2906.64,TRUE
+"133",133,"Etobicoke","Partially Secured","Tuesday","Afternoon",1004.62,TRUE
+"134",134,"Downtown Toronto","Unlocked","Wednesday","Afternoon",2595.88,TRUE
+"135",135,"York","Unlocked","Monday","Evening",2550.77,TRUE
+"136",136,"Downtown Toronto","Locked","Sunday","Evening",2106.51,TRUE
+"137",137,"East York","Unlocked","Thursday","Afternoon",834.87,FALSE
+"138",138,"Scarborough","Partially Secured","Wednesday","Night",1175.48,FALSE
+"139",139,"Scarborough","Unlocked","Saturday","Morning",700.9,TRUE
+"140",140,"North York","Locked","Wednesday","Afternoon",1383.04,FALSE
+"141",141,"Etobicoke","Locked","Thursday","Afternoon",413.14,FALSE
+"142",142,"Downtown Toronto","Locked","Friday","Afternoon",1022.82,FALSE
+"143",143,"North York","Locked","Friday","Morning",2728.81,FALSE
+"144",144,"Etobicoke","Partially Secured","Wednesday","Morning",1635.38,TRUE
+"145",145,"North York","Locked","Friday","Morning",2244.47,TRUE
+"146",146,"Downtown Toronto","Locked","Sunday","Morning",2578.87,TRUE
+"147",147,"East York","Locked","Tuesday","Afternoon",813.18,FALSE
+"148",148,"North York","Locked","Saturday","Evening",2333.11,TRUE
+"149",149,"Downtown Toronto","Unlocked","Wednesday","Evening",371.49,TRUE
+"150",150,"West End","Unlocked","Thursday","Morning",356.69,TRUE
+"151",151,"Downtown Toronto","Locked","Sunday","Morning",2656.78,FALSE
+"152",152,"Downtown Toronto","Locked","Sunday","Evening",1387.27,FALSE
+"153",153,"North York","Locked","Wednesday","Evening",901.97,TRUE
+"154",154,"Downtown Toronto","Locked","Saturday","Afternoon",840.34,TRUE
+"155",155,"Scarborough","Locked","Friday","Evening",1028.37,TRUE
+"156",156,"North York","Unlocked","Wednesday","Afternoon",2158.54,TRUE
+"157",157,"Downtown Toronto","Locked","Saturday","Evening",1245.3,TRUE
+"158",158,"Scarborough","Locked","Monday","Afternoon",680.44,TRUE
+"159",159,"Scarborough","Unlocked","Tuesday","Afternoon",2850.14,FALSE
+"160",160,"North York","Locked","Friday","Afternoon",713.52,TRUE
+"161",161,"Downtown Toronto","Locked","Wednesday","Morning",985.58,FALSE
+"162",162,"Scarborough","Locked","Saturday","Afternoon",1391.95,FALSE
+"163",163,"North York","Locked","Saturday","Afternoon",2017.27,TRUE
+"164",164,"Scarborough","Partially Secured","Wednesday","Morning",662.99,FALSE
+"165",165,"Downtown Toronto","Locked","Sunday","Afternoon",557.9,TRUE
+"166",166,"Downtown Toronto","Locked","Friday","Morning",304.87,TRUE
+"167",167,"Downtown Toronto","Unlocked","Friday","Afternoon",2006.18,TRUE
+"168",168,"Downtown Toronto","Locked","Monday","Evening",2316.86,TRUE
+"169",169,"East York","Locked","Tuesday","Evening",1132.76,TRUE
+"170",170,"York","Locked","Friday","Evening",2505.86,FALSE
+"171",171,"Downtown Toronto","Locked","Monday","Afternoon",1759.61,TRUE
+"172",172,"North York","Locked","Thursday","Evening",535.79,TRUE
+"173",173,"Downtown Toronto","Partially Secured","Tuesday","Evening",1482.56,TRUE
+"174",174,"Downtown Toronto","Unlocked","Saturday","Evening",473.03,TRUE
+"175",175,"Downtown Toronto","Locked","Thursday","Evening",557.53,TRUE
+"176",176,"Etobicoke","Locked","Sunday","Morning",637.6,TRUE
+"177",177,"Downtown Toronto","Partially Secured","Tuesday","Morning",1524.76,TRUE
+"178",178,"North York","Locked","Monday","Night",563.76,TRUE
+"179",179,"Downtown Toronto","Locked","Saturday","Afternoon",2761.9,FALSE
+"180",180,"Downtown Toronto","Locked","Wednesday","Evening",730.16,TRUE
+"181",181,"East York","Locked","Wednesday","Night",223.98,FALSE
+"182",182,"West End","Locked","Tuesday","Afternoon",1669.98,TRUE
+"183",183,"Downtown Toronto","Partially Secured","Friday","Evening",1978.59,TRUE
+"184",184,"Downtown Toronto","Partially Secured","Wednesday","Afternoon",1741.18,TRUE
+"185",185,"Downtown Toronto","Locked","Wednesday","Evening",1438.81,TRUE
+"186",186,"Downtown Toronto","Locked","Sunday","Evening",2383.49,TRUE
+"187",187,"Etobicoke","Unlocked","Sunday","Afternoon",342.35,TRUE
+"188",188,"Scarborough","Locked","Tuesday","Evening",339.21,FALSE
+"189",189,"Scarborough","Locked","Tuesday","Morning",399.6,FALSE
+"190",190,"North York","Unlocked","Saturday","Afternoon",570.95,FALSE
+"191",191,"Etobicoke","Locked","Friday","Afternoon",1613.92,FALSE
+"192",192,"Etobicoke","Locked","Saturday","Morning",2062.37,FALSE
+"193",193,"Etobicoke","Locked","Tuesday","Morning",1868.91,TRUE
+"194",194,"Downtown Toronto","Locked","Sunday","Afternoon",1878.54,FALSE
+"195",195,"North York","Unlocked","Monday","Afternoon",1747.17,FALSE
+"196",196,"Scarborough","Locked","Monday","Night",114.06,FALSE
+"197",197,"Downtown Toronto","Locked","Sunday","Night",1218.29,TRUE
+"198",198,"York","Locked","Monday","Evening",1955.58,TRUE
+"199",199,"North York","Partially Secured","Monday","Night",2200.04,TRUE
+"200",200,"Downtown Toronto","Locked","Wednesday","Evening",2964.79,TRUE
+"201",201,"Scarborough","Locked","Friday","Evening",2438.74,FALSE
+"202",202,"Etobicoke","Locked","Sunday","Afternoon",2213.07,TRUE
+"203",203,"Downtown Toronto","Locked","Friday","Morning",542.64,FALSE
+"204",204,"East York","Unlocked","Saturday","Afternoon",2776.88,FALSE
+"205",205,"York","Locked","Saturday","Evening",738.36,TRUE
+"206",206,"Scarborough","Locked","Monday","Afternoon",1054.76,FALSE
+"207",207,"East York","Locked","Sunday","Evening",1527.77,FALSE
+"208",208,"Etobicoke","Unlocked","Sunday","Afternoon",2736.36,TRUE
+"209",209,"North York","Unlocked","Friday","Evening",1564.21,TRUE
+"210",210,"East York","Partially Secured","Friday","Evening",2541.83,TRUE
+"211",211,"Downtown Toronto","Unlocked","Saturday","Night",924.98,TRUE
+"212",212,"North York","Locked","Thursday","Evening",1052.97,FALSE
+"213",213,"East York","Locked","Friday","Afternoon",2380.17,TRUE
+"214",214,"North York","Locked","Tuesday","Morning",2366.98,FALSE
+"215",215,"North York","Unlocked","Monday","Evening",993.07,FALSE
+"216",216,"Downtown Toronto","Locked","Tuesday","Evening",732.29,TRUE
+"217",217,"Scarborough","Locked","Wednesday","Evening",2419.53,TRUE
+"218",218,"Downtown Toronto","Unlocked","Tuesday","Evening",2363.44,FALSE
+"219",219,"North York","Unlocked","Saturday","Morning",728.08,TRUE
+"220",220,"Downtown Toronto","Locked","Wednesday","Morning",1246.09,TRUE
+"221",221,"West End","Locked","Saturday","Afternoon",693.54,FALSE
+"222",222,"North York","Unlocked","Thursday","Night",1300.86,TRUE
+"223",223,"North York","Locked","Wednesday","Afternoon",493.27,TRUE
+"224",224,"North York","Locked","Wednesday","Morning",1636.5,TRUE
+"225",225,"Downtown Toronto","Unlocked","Sunday","Afternoon",1588.88,TRUE
+"226",226,"Downtown Toronto","Partially Secured","Friday","Afternoon",1772.48,TRUE
+"227",227,"Etobicoke","Locked","Monday","Night",2569.68,FALSE
+"228",228,"North York","Locked","Monday","Afternoon",2550.63,FALSE
+"229",229,"Scarborough","Unlocked","Saturday","Evening",2093.77,TRUE
+"230",230,"North York","Unlocked","Thursday","Morning",801.85,FALSE
+"231",231,"North York","Locked","Tuesday","Morning",2348.31,TRUE
+"232",232,"North York","Locked","Saturday","Night",2627.92,TRUE
+"233",233,"Scarborough","Locked","Thursday","Evening",2147.64,FALSE
+"234",234,"Scarborough","Locked","Saturday","Afternoon",1337.39,FALSE
+"235",235,"Etobicoke","Locked","Friday","Evening",861.54,FALSE
+"236",236,"York","Unlocked","Saturday","Afternoon",2378.34,TRUE
+"237",237,"Downtown Toronto","Locked","Sunday","Afternoon",1956.63,TRUE
+"238",238,"Downtown Toronto","Locked","Monday","Night",1963.73,FALSE
+"239",239,"Downtown Toronto","Unlocked","Sunday","Evening",2537.98,FALSE
+"240",240,"Scarborough","Locked","Tuesday","Night",1128.17,FALSE
+"241",241,"Etobicoke","Locked","Tuesday","Evening",804.32,FALSE
+"242",242,"East York","Unlocked","Wednesday","Evening",665.28,TRUE
+"243",243,"North York","Unlocked","Friday","Morning",1938.34,TRUE
+"244",244,"North York","Unlocked","Tuesday","Evening",2951.25,TRUE
+"245",245,"Scarborough","Locked","Tuesday","Afternoon",2648.08,TRUE
+"246",246,"Downtown Toronto","Locked","Tuesday","Evening",1052.01,TRUE
+"247",247,"Etobicoke","Locked","Thursday","Afternoon",2805.72,TRUE
+"248",248,"Downtown Toronto","Unlocked","Monday","Afternoon",1611.72,TRUE
+"249",249,"Downtown Toronto","Locked","Saturday","Evening",2666.79,FALSE
+"250",250,"Downtown Toronto","Locked","Friday","Afternoon",2934.24,TRUE
+"251",251,"Downtown Toronto","Partially Secured","Sunday","Evening",1323.59,TRUE
+"252",252,"North York","Unlocked","Sunday","Afternoon",484.15,TRUE
+"253",253,"Downtown Toronto","Partially Secured","Thursday","Afternoon",477.4,FALSE
+"254",254,"Downtown Toronto","Locked","Friday","Afternoon",1630.34,TRUE
+"255",255,"West End","Partially Secured","Friday","Afternoon",924.03,TRUE
+"256",256,"Downtown Toronto","Locked","Thursday","Evening",1877.82,TRUE
+"257",257,"East York","Partially Secured","Monday","Evening",2388.58,TRUE
+"258",258,"Downtown Toronto","Locked","Wednesday","Evening",681.64,TRUE
+"259",259,"Scarborough","Unlocked","Sunday","Evening",266.61,FALSE
+"260",260,"York","Unlocked","Wednesday","Evening",2823.2,TRUE
+"261",261,"Downtown Toronto","Locked","Friday","Evening",607.79,TRUE
+"262",262,"North York","Locked","Sunday","Night",1345.93,TRUE
+"263",263,"Downtown Toronto","Locked","Friday","Evening",1029.31,TRUE
+"264",264,"North York","Locked","Wednesday","Morning",229.06,TRUE
+"265",265,"East York","Unlocked","Saturday","Evening",1195.56,TRUE
+"266",266,"York","Locked","Monday","Morning",1602.46,TRUE
+"267",267,"Etobicoke","Locked","Sunday","Evening",1999.62,TRUE
+"268",268,"North York","Locked","Wednesday","Evening",287.62,FALSE
+"269",269,"East York","Locked","Sunday","Evening",1128.69,TRUE
+"270",270,"East York","Locked","Tuesday","Evening",2119.85,TRUE
+"271",271,"North York","Locked","Wednesday","Night",2398.18,FALSE
+"272",272,"Downtown Toronto","Locked","Tuesday","Evening",2173.79,FALSE
+"273",273,"Downtown Toronto","Locked","Tuesday","Evening",1965.63,TRUE
+"274",274,"Downtown Toronto","Unlocked","Sunday","Afternoon",2127.34,TRUE
+"275",275,"Downtown Toronto","Partially Secured","Monday","Afternoon",2290.16,TRUE
+"276",276,"North York","Unlocked","Monday","Morning",1599.35,TRUE
+"277",277,"East York","Locked","Saturday","Evening",2977.97,TRUE
+"278",278,"North York","Partially Secured","Monday","Night",1114.99,FALSE
+"279",279,"Scarborough","Locked","Wednesday","Afternoon",463.7,TRUE
+"280",280,"Downtown Toronto","Partially Secured","Thursday","Evening",263.01,TRUE
+"281",281,"Downtown Toronto","Locked","Saturday","Evening",583.18,FALSE
+"282",282,"Downtown Toronto","Locked","Monday","Evening",2541.11,FALSE
+"283",283,"Scarborough","Locked","Tuesday","Night",1247.43,FALSE
+"284",284,"York","Partially Secured","Thursday","Afternoon",581.42,TRUE
+"285",285,"Scarborough","Locked","Friday","Evening",487.14,TRUE
+"286",286,"Downtown Toronto","Unlocked","Thursday","Evening",1624.44,FALSE
+"287",287,"North York","Locked","Thursday","Afternoon",1773.69,TRUE
+"288",288,"Downtown Toronto","Locked","Monday","Afternoon",2235.58,TRUE
+"289",289,"Etobicoke","Locked","Wednesday","Evening",595.87,TRUE
+"290",290,"York","Locked","Friday","Afternoon",2944.73,TRUE
+"291",291,"Scarborough","Unlocked","Monday","Morning",2137.49,FALSE
+"292",292,"North York","Locked","Friday","Evening",1949.32,TRUE
+"293",293,"Scarborough","Locked","Tuesday","Morning",876.56,TRUE
+"294",294,"Scarborough","Locked","Friday","Afternoon",2257.64,FALSE
+"295",295,"Scarborough","Locked","Monday","Evening",1964.49,TRUE
+"296",296,"Etobicoke","Partially Secured","Tuesday","Afternoon",1655.04,FALSE
+"297",297,"Downtown Toronto","Locked","Saturday","Evening",1738.9,FALSE
+"298",298,"East York","Locked","Saturday","Afternoon",1135.79,FALSE
+"299",299,"Scarborough","Locked","Wednesday","Morning",1517.72,FALSE
+"300",300,"Scarborough","Locked","Sunday","Evening",2303.96,FALSE
+"301",301,"North York","Unlocked","Friday","Morning",2098.21,FALSE
+"302",302,"North York","Locked","Thursday","Evening",2717.08,FALSE
+"303",303,"Scarborough","Locked","Tuesday","Evening",518.92,TRUE
+"304",304,"Etobicoke","Unlocked","Tuesday","Afternoon",2199.71,TRUE
+"305",305,"North York","Locked","Saturday","Evening",119.93,FALSE
+"306",306,"Scarborough","Unlocked","Friday","Night",2006.1,TRUE
+"307",307,"Scarborough","Locked","Sunday","Morning",2212.67,TRUE
+"308",308,"Scarborough","Partially Secured","Saturday","Morning",2840.07,FALSE
+"309",309,"East York","Locked","Saturday","Evening",793.87,TRUE
+"310",310,"North York","Partially Secured","Wednesday","Evening",2712.07,TRUE
+"311",311,"Etobicoke","Locked","Friday","Afternoon",2439.9,TRUE
+"312",312,"Downtown Toronto","Locked","Friday","Afternoon",961.82,TRUE
+"313",313,"Scarborough","Locked","Monday","Night",1505.77,TRUE
+"314",314,"Downtown Toronto","Locked","Friday","Afternoon",1677.87,TRUE
+"315",315,"Downtown Toronto","Locked","Wednesday","Evening",1527.8,FALSE
+"316",316,"Downtown Toronto","Locked","Thursday","Night",1615.86,TRUE
+"317",317,"Scarborough","Locked","Tuesday","Evening",1277.23,TRUE
+"318",318,"Downtown Toronto","Locked","Thursday","Afternoon",101.33,TRUE
+"319",319,"Downtown Toronto","Unlocked","Wednesday","Morning",402.84,TRUE
+"320",320,"Scarborough","Locked","Sunday","Evening",1749.74,TRUE
+"321",321,"Downtown Toronto","Locked","Saturday","Afternoon",545.06,TRUE
+"322",322,"Downtown Toronto","Unlocked","Monday","Evening",298.25,TRUE
+"323",323,"North York","Partially Secured","Friday","Morning",2498.35,FALSE
+"324",324,"Scarborough","Locked","Wednesday","Afternoon",1258.27,TRUE
+"325",325,"East York","Unlocked","Thursday","Evening",1844.22,FALSE
+"326",326,"North York","Partially Secured","Tuesday","Evening",1798.15,TRUE
+"327",327,"Downtown Toronto","Unlocked","Tuesday","Evening",2062.69,TRUE
+"328",328,"North York","Locked","Monday","Evening",1033.21,TRUE
+"329",329,"Etobicoke","Unlocked","Monday","Evening",878.83,FALSE
+"330",330,"Downtown Toronto","Unlocked","Tuesday","Afternoon",2154.64,TRUE
+"331",331,"Scarborough","Locked","Sunday","Afternoon",2474.15,TRUE
+"332",332,"Scarborough","Locked","Saturday","Evening",2902.75,TRUE
+"333",333,"North York","Unlocked","Wednesday","Evening",2035.43,TRUE
+"334",334,"York","Partially Secured","Tuesday","Evening",1036.35,FALSE
+"335",335,"North York","Partially Secured","Tuesday","Evening",1675.88,TRUE
+"336",336,"Downtown Toronto","Locked","Saturday","Evening",1173.15,TRUE
+"337",337,"North York","Locked","Sunday","Evening",619.58,TRUE
+"338",338,"West End","Locked","Monday","Evening",1415.89,FALSE
+"339",339,"Etobicoke","Locked","Friday","Afternoon",2202.73,FALSE
+"340",340,"Downtown Toronto","Locked","Tuesday","Afternoon",560.63,TRUE
+"341",341,"North York","Locked","Thursday","Afternoon",1201.82,TRUE
+"342",342,"Etobicoke","Locked","Sunday","Morning",174.25,TRUE
+"343",343,"West End","Unlocked","Monday","Evening",2303.82,TRUE
+"344",344,"Downtown Toronto","Unlocked","Monday","Morning",991.19,TRUE
+"345",345,"York","Locked","Thursday","Evening",788.89,FALSE
+"346",346,"North York","Unlocked","Friday","Evening",2726.99,TRUE
+"347",347,"North York","Unlocked","Wednesday","Afternoon",629.33,TRUE
+"348",348,"East York","Locked","Saturday","Night",294.44,TRUE
+"349",349,"Etobicoke","Locked","Saturday","Evening",1267.13,TRUE
+"350",350,"Scarborough","Locked","Wednesday","Evening",2334.05,TRUE
+"351",351,"North York","Locked","Thursday","Afternoon",2759.61,TRUE
+"352",352,"Downtown Toronto","Unlocked","Thursday","Night",2876.39,TRUE
+"353",353,"North York","Partially Secured","Sunday","Morning",1372.56,FALSE
+"354",354,"Scarborough","Unlocked","Monday","Evening",1858.75,TRUE
+"355",355,"Downtown Toronto","Unlocked","Friday","Evening",1236.61,TRUE
+"356",356,"Scarborough","Locked","Tuesday","Afternoon",864.8,TRUE
+"357",357,"Etobicoke","Locked","Friday","Afternoon",1182.1,FALSE
+"358",358,"Downtown Toronto","Locked","Monday","Evening",837.31,FALSE
+"359",359,"Etobicoke","Locked","Sunday","Afternoon",1004.89,FALSE
+"360",360,"Scarborough","Locked","Friday","Evening",1705.63,TRUE
+"361",361,"Scarborough","Unlocked","Tuesday","Afternoon",2666.74,TRUE
+"362",362,"North York","Locked","Tuesday","Morning",1787.11,TRUE
+"363",363,"Etobicoke","Locked","Tuesday","Afternoon",1779.79,TRUE
+"364",364,"Downtown Toronto","Unlocked","Monday","Afternoon",2831.84,FALSE
+"365",365,"Scarborough","Unlocked","Thursday","Evening",174.7,TRUE
+"366",366,"East York","Locked","Monday","Morning",2017.55,TRUE
+"367",367,"North York","Locked","Wednesday","Morning",797.17,TRUE
+"368",368,"York","Locked","Wednesday","Evening",1216.9,FALSE
+"369",369,"Scarborough","Locked","Sunday","Afternoon",154.53,TRUE
+"370",370,"East York","Locked","Friday","Evening",2278.76,FALSE
+"371",371,"York","Locked","Thursday","Morning",2681.88,TRUE
+"372",372,"North York","Locked","Monday","Morning",1558.91,TRUE
+"373",373,"Etobicoke","Unlocked","Thursday","Night",2954.48,TRUE
+"374",374,"North York","Partially Secured","Tuesday","Afternoon",2490.26,TRUE
+"375",375,"Etobicoke","Locked","Thursday","Night",124.75,TRUE
+"376",376,"Etobicoke","Locked","Monday","Afternoon",712.02,TRUE
+"377",377,"York","Locked","Thursday","Night",1493.5,TRUE
+"378",378,"Downtown Toronto","Locked","Tuesday","Afternoon",642.57,TRUE
+"379",379,"West End","Locked","Sunday","Evening",1794.62,TRUE
+"380",380,"Downtown Toronto","Locked","Thursday","Evening",1912.37,FALSE
+"381",381,"Downtown Toronto","Locked","Thursday","Morning",1162.61,FALSE
+"382",382,"East York","Unlocked","Tuesday","Evening",1418.48,TRUE
+"383",383,"Downtown Toronto","Locked","Tuesday","Evening",2730.79,FALSE
+"384",384,"North York","Locked","Friday","Evening",1560.24,TRUE
+"385",385,"East York","Locked","Sunday","Evening",1356.24,FALSE
+"386",386,"Downtown Toronto","Partially Secured","Friday","Morning",2156.77,TRUE
+"387",387,"Etobicoke","Locked","Sunday","Evening",2001.82,FALSE
+"388",388,"Downtown Toronto","Unlocked","Thursday","Morning",934.68,FALSE
+"389",389,"Scarborough","Locked","Wednesday","Afternoon",2928.08,TRUE
+"390",390,"Downtown Toronto","Locked","Thursday","Evening",1950.34,FALSE
+"391",391,"Etobicoke","Locked","Sunday","Evening",2812.85,TRUE
+"392",392,"Downtown Toronto","Unlocked","Saturday","Morning",2714.69,TRUE
+"393",393,"Downtown Toronto","Locked","Monday","Evening",1471.69,TRUE
+"394",394,"North York","Locked","Thursday","Afternoon",1384.08,FALSE
+"395",395,"Scarborough","Unlocked","Wednesday","Afternoon",2355.37,TRUE
+"396",396,"North York","Partially Secured","Monday","Night",1068.99,TRUE
+"397",397,"Downtown Toronto","Unlocked","Sunday","Evening",2245.28,TRUE
+"398",398,"East York","Locked","Friday","Evening",1998.69,FALSE
+"399",399,"Scarborough","Locked","Saturday","Night",2198.69,TRUE
+"400",400,"Downtown Toronto","Unlocked","Friday","Afternoon",1361.96,TRUE
+"401",401,"Scarborough","Locked","Tuesday","Afternoon",736.6,FALSE
+"402",402,"Downtown Toronto","Locked","Saturday","Afternoon",2483.05,FALSE
+"403",403,"Scarborough","Locked","Tuesday","Night",2766.56,TRUE
+"404",404,"Scarborough","Unlocked","Tuesday","Evening",156.9,FALSE
+"405",405,"Scarborough","Locked","Saturday","Evening",1505.13,TRUE
+"406",406,"Scarborough","Locked","Wednesday","Afternoon",1695.27,TRUE
+"407",407,"Downtown Toronto","Locked","Sunday","Evening",1097.42,TRUE
+"408",408,"North York","Locked","Tuesday","Evening",474.5,TRUE
+"409",409,"North York","Unlocked","Monday","Afternoon",2523.75,TRUE
+"410",410,"Downtown Toronto","Locked","Friday","Morning",1455.05,FALSE
+"411",411,"North York","Unlocked","Wednesday","Evening",2797.95,TRUE
+"412",412,"Scarborough","Locked","Monday","Night",2273.63,TRUE
+"413",413,"Etobicoke","Locked","Monday","Morning",1584.6,FALSE
+"414",414,"North York","Locked","Friday","Afternoon",656.51,FALSE
+"415",415,"East York","Unlocked","Monday","Morning",1524.38,TRUE
+"416",416,"East York","Unlocked","Saturday","Afternoon",364.93,FALSE
+"417",417,"Scarborough","Locked","Friday","Evening",1585.03,FALSE
+"418",418,"Downtown Toronto","Locked","Thursday","Morning",1920.24,FALSE
+"419",419,"Scarborough","Unlocked","Sunday","Evening",1531.16,TRUE
+"420",420,"Downtown Toronto","Unlocked","Tuesday","Evening",247.44,TRUE
+"421",421,"North York","Locked","Thursday","Afternoon",619.94,TRUE
+"422",422,"North York","Partially Secured","Tuesday","Afternoon",2584.92,TRUE
+"423",423,"West End","Locked","Tuesday","Morning",277.27,FALSE
+"424",424,"Scarborough","Locked","Thursday","Night",503.31,FALSE
+"425",425,"Scarborough","Locked","Tuesday","Evening",483,TRUE
+"426",426,"North York","Locked","Tuesday","Afternoon",1612.17,FALSE
+"427",427,"Downtown Toronto","Locked","Wednesday","Night",2509.31,TRUE
+"428",428,"North York","Unlocked","Tuesday","Afternoon",1262.31,FALSE
+"429",429,"Downtown Toronto","Unlocked","Thursday","Morning",853.36,TRUE
+"430",430,"Etobicoke","Locked","Thursday","Afternoon",645.41,FALSE
+"431",431,"Downtown Toronto","Locked","Tuesday","Evening",769.04,FALSE
+"432",432,"East York","Locked","Saturday","Morning",1193.7,TRUE
+"433",433,"Scarborough","Locked","Friday","Morning",222.34,FALSE
+"434",434,"Scarborough","Unlocked","Thursday","Night",2279.67,FALSE
+"435",435,"East York","Locked","Sunday","Evening",617.37,TRUE
+"436",436,"Downtown Toronto","Locked","Tuesday","Evening",1894.55,TRUE
+"437",437,"Downtown Toronto","Locked","Monday","Morning",2932.41,FALSE
+"438",438,"North York","Locked","Wednesday","Evening",1100.33,FALSE
+"439",439,"Etobicoke","Unlocked","Wednesday","Evening",2179.14,TRUE
+"440",440,"Downtown Toronto","Locked","Friday","Afternoon",845.39,FALSE
+"441",441,"West End","Locked","Sunday","Afternoon",1891.27,TRUE
+"442",442,"Downtown Toronto","Unlocked","Thursday","Afternoon",1286.89,TRUE
+"443",443,"Downtown Toronto","Unlocked","Wednesday","Evening",2043.97,TRUE
+"444",444,"West End","Unlocked","Monday","Morning",1109.73,FALSE
+"445",445,"Scarborough","Locked","Saturday","Afternoon",2981.91,TRUE
+"446",446,"North York","Locked","Monday","Afternoon",1313.94,TRUE
+"447",447,"Downtown Toronto","Locked","Tuesday","Afternoon",2805.81,TRUE
+"448",448,"Downtown Toronto","Locked","Wednesday","Morning",658.91,TRUE
+"449",449,"East York","Locked","Tuesday","Morning",2917.46,TRUE
+"450",450,"North York","Unlocked","Friday","Evening",1539.84,TRUE
+"451",451,"North York","Locked","Sunday","Night",538.42,TRUE
+"452",452,"Downtown Toronto","Unlocked","Wednesday","Evening",395.72,TRUE
+"453",453,"Etobicoke","Locked","Tuesday","Evening",1094.37,TRUE
+"454",454,"Downtown Toronto","Locked","Sunday","Evening",2436.81,TRUE
+"455",455,"North York","Unlocked","Wednesday","Afternoon",2382.14,FALSE
+"456",456,"Downtown Toronto","Unlocked","Friday","Evening",299.92,FALSE
+"457",457,"Scarborough","Unlocked","Friday","Afternoon",1382.51,TRUE
+"458",458,"Etobicoke","Locked","Thursday","Evening",1567.72,TRUE
+"459",459,"North York","Locked","Monday","Night",481.56,FALSE
+"460",460,"East York","Locked","Monday","Afternoon",966.01,FALSE
+"461",461,"Downtown Toronto","Locked","Sunday","Evening",1953.08,TRUE
+"462",462,"Downtown Toronto","Locked","Friday","Evening",1023.98,FALSE
+"463",463,"Etobicoke","Locked","Wednesday","Evening",1702.72,TRUE
+"464",464,"North York","Locked","Friday","Evening",2204.84,FALSE
+"465",465,"West End","Partially Secured","Sunday","Morning",736.62,TRUE
+"466",466,"Etobicoke","Locked","Saturday","Night",1797.02,TRUE
+"467",467,"North York","Partially Secured","Saturday","Morning",2419.8,TRUE
+"468",468,"North York","Partially Secured","Friday","Night",1457.78,TRUE
+"469",469,"North York","Locked","Monday","Afternoon",1396.16,TRUE
+"470",470,"Etobicoke","Unlocked","Monday","Night",2573.13,TRUE
+"471",471,"North York","Unlocked","Wednesday","Night",2000.15,TRUE
+"472",472,"East York","Unlocked","Tuesday","Morning",1072.1,TRUE
+"473",473,"Downtown Toronto","Unlocked","Sunday","Evening",2345.23,FALSE
+"474",474,"North York","Locked","Sunday","Evening",1094.19,FALSE
+"475",475,"North York","Locked","Sunday","Afternoon",587.19,FALSE
+"476",476,"North York","Locked","Tuesday","Evening",1975.58,TRUE
+"477",477,"North York","Unlocked","Thursday","Afternoon",495.92,TRUE
+"478",478,"Downtown Toronto","Unlocked","Wednesday","Afternoon",1173,TRUE
+"479",479,"North York","Partially Secured","Saturday","Evening",128.77,FALSE
+"480",480,"Scarborough","Locked","Sunday","Afternoon",2430.47,TRUE
+"481",481,"East York","Locked","Saturday","Evening",2802.45,TRUE
+"482",482,"Scarborough","Locked","Tuesday","Night",981.57,TRUE
+"483",483,"Etobicoke","Unlocked","Friday","Morning",1978.73,FALSE
+"484",484,"Downtown Toronto","Locked","Saturday","Afternoon",1968.12,FALSE
+"485",485,"Etobicoke","Partially Secured","Tuesday","Night",1197.91,TRUE
+"486",486,"Downtown Toronto","Locked","Tuesday","Evening",2110.65,TRUE
+"487",487,"Downtown Toronto","Locked","Saturday","Evening",301.83,FALSE
+"488",488,"Etobicoke","Locked","Friday","Morning",2748.8,FALSE
+"489",489,"Scarborough","Locked","Friday","Afternoon",2446.3,FALSE
+"490",490,"North York","Unlocked","Tuesday","Night",1013.52,TRUE
+"491",491,"Downtown Toronto","Unlocked","Tuesday","Evening",1726.37,TRUE
+"492",492,"Scarborough","Unlocked","Thursday","Evening",1510.35,FALSE
+"493",493,"Scarborough","Locked","Thursday","Afternoon",784.46,TRUE
+"494",494,"North York","Unlocked","Thursday","Evening",1571.06,TRUE
+"495",495,"Downtown Toronto","Locked","Thursday","Afternoon",2395.25,TRUE
+"496",496,"Downtown Toronto","Unlocked","Thursday","Afternoon",454.26,TRUE
+"497",497,"Scarborough","Locked","Thursday","Afternoon",426.43,TRUE
+"498",498,"Scarborough","Locked","Wednesday","Afternoon",1318.63,TRUE
+"499",499,"Scarborough","Locked","Monday","Afternoon",2579.01,TRUE
+"500",500,"Downtown Toronto","Unlocked","Tuesday","Morning",1618.86,FALSE

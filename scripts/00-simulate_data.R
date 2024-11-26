@@ -1,52 +1,63 @@
 #### Preamble ####
-# Purpose: Simulates a dataset of Australian electoral divisions, including the 
-  #state and party that won each division.
-# Author: Rohan Alexander
+# Purpose: Simulates a dataset of bike thefts, including all the variables of interests.
+# Author: Tommy Fu
 # Date: 26 September 2024
-# Contact: rohan.alexander@utoronto.ca
-# License: MIT
+# Contact: tommy.fu@mail.utoronto.ca
 # Pre-requisites: The `tidyverse` package must be installed
-# Any other information needed? Make sure you are in the `starter_folder` rproj
-
 
 #### Workspace setup ####
 library(tidyverse)
-set.seed(853)
-
+set.seed(432)
 
 #### Simulate data ####
-# State names
-states <- c(
-  "New South Wales",
-  "Victoria",
-  "Queensland",
-  "South Australia",
-  "Western Australia",
-  "Tasmania",
-  "Northern Territory",
-  "Australian Capital Territory"
+# Neighborhood names (sample from Toronto or customize further)
+neighborhoods <- c(
+  "Downtown Toronto",
+  "Scarborough",
+  "North York",
+  "Etobicoke",
+  "East York",
+  "York",
+  "West End"
 )
 
-# Political parties
-parties <- c("Labor", "Liberal", "Greens", "National", "Other")
+# Theft types
+theft_types <- c("Locked", "Unlocked", "Partially Secured")
 
-# Create a dataset by randomly assigning states and parties to divisions
-analysis_data <- tibble(
-  division = paste("Division", 1:151),  # Add "Division" to make it a character
-  state = sample(
-    states,
-    size = 151,
+# Simulate dataset
+simulated_data <- tibble(
+  incident_id = 1:500,  # Simulate 500 incidents
+  neighborhood = sample(
+    neighborhoods,
+    size = 500,
     replace = TRUE,
-    prob = c(0.25, 0.25, 0.15, 0.1, 0.1, 0.1, 0.025, 0.025) # Rough state population distribution
+    prob = c(0.3, 0.2, 0.2, 0.1, 0.1, 0.05, 0.05) # Distribution across neighborhoods
   ),
-  party = sample(
-    parties,
-    size = 151,
+  theft_type = sample(
+    theft_types,
+    size = 500,
     replace = TRUE,
-    prob = c(0.40, 0.40, 0.05, 0.1, 0.05) # Rough party distribution
+    prob = c(0.6, 0.3, 0.1) # Distribution of theft types
+  ),
+  day_of_week = sample(
+    c("Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"),
+    size = 500,
+    replace = TRUE
+  ),
+  time_of_day = sample(
+    c("Morning", "Afternoon", "Evening", "Night"),
+    size = 500,
+    replace = TRUE,
+    prob = c(0.2, 0.3, 0.4, 0.1) # Theft more common in the evening
+  ),
+  bike_value = round(runif(500, min = 100, max = 3000), 2), # Random bike values in dollars
+  reported_to_police = sample(
+    c(TRUE, FALSE),
+    size = 500,
+    replace = TRUE,
+    prob = c(0.7, 0.3) # Reporting likelihood
   )
 )
 
-
-#### Save data ####
-write_csv(analysis_data, "data/00-simulated_data/simulated_data.csv")
+# save the simulated data
+write.csv(simulated_data,"data/00-simulated_data/simulated_data.csv")
