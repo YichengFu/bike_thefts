@@ -1,12 +1,12 @@
 ---
-title: "My title"
-subtitle: "My subtitle if needed"
+title: "Exploring Urban Patterns in Bicycle Theft: Identifying Key Predictors and Trends"
+subtitle: "An Analysis of Bicycle Theft Patterns and Predictors in Toronto"
 author: 
-  - First author
-  - Another author
-thanks: "Code and data are available at: [https://github.com/RohanAlexander/starter_folder](https://github.com/RohanAlexander/starter_folder)."
+  - Tommy Fu
+thanks: "Code and data are available at: https://github.com/YichengFu/bike_thefts_analysis.git."
 date: today
 date-format: long
+toc: true
 abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
 format: pdf
 number-sections: true
