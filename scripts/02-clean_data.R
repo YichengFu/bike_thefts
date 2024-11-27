@@ -1,44 +1,36 @@
 #### Preamble ####
-# Purpose: Cleans the raw plane data recorded by two observers..... [...UPDATE THIS...]
-# Author: Rohan Alexander [...UPDATE THIS...]
-# Date: 6 April 2023 [...UPDATE THIS...]
-# Contact: rohan.alexander@utoronto.ca [...UPDATE THIS...]
-# License: MIT
-# Pre-requisites: [...UPDATE THIS...]
-# Any other information needed? [...UPDATE THIS...]
+# Purpose: Cleans the raw bike thefts data and drop observations that are missing importatn variables. 
+# Author: Tommy Fu
+# Date: 27 November 2024
+# Contact: tommy.fu@mail.utoronto.ca
+# Pre-requisites: 
+# - All the necessary packages must be installed and loaded
+# - 00-simulate_data.R and 01-test_simulated_data.R must have been run
 
 #### Workspace setup ####
-library(tidyverse)
+# Load necessary libraries
+library(dplyr)
+library(tidyr)
+library(arrow)
+library(lubridate) # For date handling
 
 #### Clean data ####
-raw_data <- read_csv("inputs/data/plane_data.csv")
+# Load the raw dataset
+bicycle_thefts <- read_csv("data/01-raw_data/Bicycle_Thefts_Open_Data.csv")
 
-cleaned_data <-
-  raw_data |>
-  janitor::clean_names() |>
-  select(wing_width_mm, wing_length_mm, flying_time_sec_first_timer) |>
-  filter(wing_width_mm != "caw") |>
+# Clean the dataset
+bicycle_thefts_cleaned <- bicycle_thefts %>%
+  # Remove observations where STATUS is "UNKNOWN" or "RECOVERED"
+  filter(!STATUS %in% c("UNKNOWN", "RECOVERED")) %>%
+  # Drop the BIKE_MODEL column due to a high proportion of missing values
+  select(-BIKE_MODEL) %>%
+  # Drop rows with missing values in BIKE_MAKE and BIKE_COST
+  filter(!is.na(BIKE_MAKE), !is.na(BIKE_COST)) %>%
+  # Convert OCC_DATE and REPORT_DATE to Date format
   mutate(
-    flying_time_sec_first_timer = if_else(flying_time_sec_first_timer == "1,35",
-                                   "1.35",
-                                   flying_time_sec_first_timer)
-  ) |>
-  mutate(wing_width_mm = if_else(wing_width_mm == "490",
-                                 "49",
-                                 wing_width_mm)) |>
-  mutate(wing_width_mm = if_else(wing_width_mm == "6",
-                                 "60",
-                                 wing_width_mm)) |>
-  mutate(
-    wing_width_mm = as.numeric(wing_width_mm),
-    wing_length_mm = as.numeric(wing_length_mm),
-    flying_time_sec_first_timer = as.numeric(flying_time_sec_first_timer)
-  ) |>
-  rename(flying_time = flying_time_sec_first_timer,
-         width = wing_width_mm,
-         length = wing_length_mm
-         ) |> 
-  tidyr::drop_na()
+    occurence_date = as_date(OCC_DATE, format = "%m/%d/%Y %I:%M:%S %p"),
+    report_date = as_date(REPORT_DATE, format = "%m/%d/%Y %I:%M:%S %p")
+  )
 
-#### Save data ####
-write_csv(cleaned_data, "outputs/data/analysis_data.csv")
+# Save the cleaned dataset as a Parquet file
+write_parquet(bicycle_thefts_cleaned, "data/02-analysis_data/analysis_data.parquet")

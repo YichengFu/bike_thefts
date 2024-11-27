@@ -1,7 +1,7 @@
 #### Preamble ####
 # Purpose: Simulates a dataset of bike thefts, including all the variables of interests.
 # Author: Tommy Fu
-# Date: 26 September 2024
+# Date: 26 November 2024
 # Contact: tommy.fu@mail.utoronto.ca
 # Pre-requisites: The `tidyverse` package must be installed
 
