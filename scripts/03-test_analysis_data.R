@@ -10,59 +10,45 @@
 #### Workspace setup ####
 library(tidyverse)
 library(testthat)
+library(arrow) # For reading Parquet files
 
-data <- read_csv("data/02-analysis_data/analysis_data.csv")
-
+data <- read_parquet("data/02-analysis_data/analysis_data.parquet")
 
 #### Test data ####
-# Test that the dataset has 151 rows - there are 151 divisions in Australia
-test_that("dataset has 151 rows", {
-  expect_equal(nrow(analysis_data), 151)
-})
-
-# Test that the dataset has 3 columns
-test_that("dataset has 3 columns", {
-  expect_equal(ncol(analysis_data), 3)
-})
-
-# Test that the 'division' column is character type
-test_that("'division' is character", {
-  expect_type(analysis_data$division, "character")
-})
-
-# Test that the 'party' column is character type
-test_that("'party' is character", {
-  expect_type(analysis_data$party, "character")
-})
-
-# Test that the 'state' column is character type
-test_that("'state' is character", {
-  expect_type(analysis_data$state, "character")
-})
-
-# Test that there are no missing values in the dataset
+# Test that the dataset has no missing values
 test_that("no missing values in dataset", {
-  expect_true(all(!is.na(analysis_data)))
+  expect_true(all(!is.na(data)))
 })
 
-# Test that 'division' contains unique values (no duplicates)
-test_that("'division' column contains unique values", {
-  expect_equal(length(unique(analysis_data$division)), 151)
+# Test that 'occurence_date' and 'report_date' are of Date type
+test_that("'occurence_date' and 'report_date' are Date type", {
+  expect_s3_class(data$occurence_date, "Date")
+  expect_s3_class(data$report_date, "Date")
 })
 
-# Test that 'state' contains only valid Australian state or territory names
-valid_states <- c("New South Wales", "Victoria", "Queensland", "South Australia", "Western Australia", 
-                  "Tasmania", "Northern Territory", "Australian Capital Territory")
-test_that("'state' contains valid Australian state names", {
-  expect_true(all(analysis_data$state %in% valid_states))
+# Test that 'BIKE_COST' is numeric
+test_that("'BIKE_COST' and 'BIKE_SPEED' are numeric", {
+  expect_type(data$BIKE_COST, "double")
 })
 
-# Test that there are no empty strings in 'division', 'party', or 'state' columns
-test_that("no empty strings in 'division', 'party', or 'state' columns", {
-  expect_false(any(analysis_data$division == "" | analysis_data$party == "" | analysis_data$state == ""))
+# Test that 'STATUS' and 'BIKE_MAKE' are character
+test_that("'STATUS' and 'BIKE_MAKE' are character", {
+  expect_type(data$STATUS, "character")
+  expect_type(data$BIKE_MAKE, "character")
 })
 
-# Test that the 'party' column contains at least 2 unique values
-test_that("'party' column contains at least 2 unique values", {
-  expect_true(length(unique(analysis_data$party)) >= 2)
+# Test that 'BIKE_COST' has a positive median value
+test_that("'BIKE_COST' has a positive median value", {
+  expect_true(median(data$BIKE_COST, na.rm = TRUE) > 0)
+})
+
+# Test that there are no duplicate rows
+test_that("no duplicate rows in the dataset", {
+  expect_equal(nrow(data), nrow(distinct(data)))
+})
+
+# Test that 'STATUS' contains only valid values
+valid_status <- c("STOLEN", "LOST")
+test_that("'STATUS' contains only valid values", {
+  expect_true(all(data$STATUS %in% valid_status))
 })

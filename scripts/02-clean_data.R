@@ -22,8 +22,8 @@ bicycle_thefts <- read_csv("data/01-raw_data/Bicycle_Thefts_Open_Data.csv")
 bicycle_thefts_cleaned <- bicycle_thefts %>%
   # Remove observations where STATUS is "UNKNOWN" or "RECOVERED"
   filter(!STATUS %in% c("UNKNOWN", "RECOVERED")) %>%
-  # Drop the BIKE_MODEL column due to a high proportion of missing values
-  select(-BIKE_MODEL) %>%
+  # Drop the BIKE_MODEL, BIKE_SPEED and BIKE_COLOUR column due to a high proportion of missing values
+  select(-BIKE_MODEL, -BIKE_SPEED, -BIKE_COLOUR) %>%
   # Drop rows with missing values in BIKE_MAKE and BIKE_COST
   filter(!is.na(BIKE_MAKE), !is.na(BIKE_COST)) %>%
   # Convert OCC_DATE and REPORT_DATE to Date format
