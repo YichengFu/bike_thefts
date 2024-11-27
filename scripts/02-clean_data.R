@@ -4,7 +4,7 @@
 # Date: 27 November 2024
 # Contact: tommy.fu@mail.utoronto.ca
 # Pre-requisites: 
-# - All the necessary packages must be installed and loaded
+# - All the necessary packages must be installed and loaded 'dplyr','tidyr','arrow','lubridate'.
 # - 00-simulate_data.R and 01-test_simulated_data.R must have been run
 
 #### Workspace setup ####

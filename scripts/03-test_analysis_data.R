@@ -4,7 +4,7 @@
 # Date: 27 November 2024
 # Contact: tommy.fu@mail.utoronto.ca
 # Pre-requisites: 
-# - The `tidyverse` package must be installed and loaded
+# - All the necessary packages must be installed and loaded 'dplyr','tidyr','arrow','lubridate','tidyverse',testthat'.
 # - 02-clean_data.R must have been run
 
 #### Workspace setup ####
