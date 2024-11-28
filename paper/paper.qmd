@@ -1,13 +1,13 @@
 ---
-title: "Understanding Urban Bicycle Theft: Identifying Key Predictors for Risk Assessment"
-subtitle: "An Analysis of Bicycle Theft Patterns and Predictors in Toronto"
+title: "Understanding Bicycle Theft in High-Risk Neighborhoods: Key Predictors for Targeted Risk Assessment"
+subtitle: "An Analysis of Theft Patterns and Risk Factors in Toronto's High-Theft Areas"
 author: 
   - Tommy Fu
 thanks: "Code and data are available at: https://github.com/YichengFu/bike_thefts_analysis.git."
 date: today
 date-format: long
 toc: true
-abstract: "First sentence. Second sentence. Third sentence. Fourth sentence."
+abstract: "This study explores patterns of bicycle theft in Toronto, focusing on thefts in high-risk neighborhoods using logistic regression. The analysis identifies bike cost, premises type, location type, and time of occurrence as significant predictors of thefts in high-risk neighborhoods. Results show that high-cost bikes are disproportionately stolen in public spaces and during evening hours, with specific neighborhoods exhibiting elevated theft rates. These findings highlight risk factors and provide actionable insights for targeted interventions, urban planning, and improved security measures in vulnerable areas."
 format: pdf
 number-sections: true
 bibliography: references.bib
@@ -19,54 +19,65 @@ bibliography: references.bib
 #| message: false
 
 library(tidyverse)
-library(palmerpenguins)
+library(knitr)
+library(arrow)
+library(here)
+library(rstanarm)
+library(modelsummary)
+
+
+
+raw_data <- read_csv(here::here("data/01-raw_data/Bicycle_Thefts_Open_Data.csv"))
+analysis_data <- read_parquet(here::here("data/02-analysis_data/analysis_data.parquet"))
 ```
 
 
 # Introduction
 
-Overview paragraph
+## Overview
+Bicycle theft is a persistent urban problem with significant economic and emotional impacts on individuals and communities. In cities like Toronto, where cycling plays an increasingly vital role in promoting sustainable transportation, understanding the factors contributing to bicycle theft is essential for designing effective preventive measures. While previous studies have examined general theft trends, few have focused specifically on identifying patterns in high-risk neighborhoods, where targeted interventions could have the greatest impact. In this paper the bike thefts data from Toronto Police Open Data will be utilized . This paper seeks to address this gap by exploring the spatial, temporal, and contextual factors associated with bicycle thefts in Toronto.
 
-Estimand paragraph
+## Estimand 
+The estimand of this study is the likelihood of thefts occurring in high-risk neighborhoods compared to others, given key predictors such as bike cost, premises type, location type, and time of theft. The estimand focuses on understanding the characteristics of thefts in these neighborhoods, allowing us to identify significant factors that differentiate high-risk areas from others. By using a logistic regression model, the analysis aims to quantify these relationships and provide actionable insights.
 
-Results paragraph
+## Results Summary
+The analysis highlights significant relationships between theft occurrences in high-risk neighborhoods and predictors such as bike cost, premises type, and time of day. Findings suggest that high-cost bicycles are frequently targeted in public spaces during evening hours, with some neighborhoods experiencing disproportionately higher theft rates.
 
-Why it matters paragraph
+## Why this paper matters
+This research provides actionable knowledge to enhance theft prevention in urban settings. By identifying the circumstances under which thefts are more likely to occur, the study offers evidence to inform targeted interventions, such as improved security measures in vulnerable areas. These findings contribute to creating safer urban spaces for cyclists.
 
-Telegraphing paragraph: The remainder of this paper is structured as follows. @sec-data....
+## Paper Structure: 
+The remainder of this paper is structured as follows. In @sec-data, the overview of the data used in this study and the variables of interests will be introduced. Further the data normalization will be discussed in details. @sec-model illustrates the Bayesian logistic regression model built in our analysis, some details include model set up, assumptions and justification. @sec-result highlights the result of the model visualizing using tables and graphs. Lastly, @sec-discussion contains discussion of the analysis based on findings, the limitations of the model and the suggestion for future research. 
 
 # Data {#sec-data}
 
 ## Overview
 
-We use the statistical programming language R [@citeR].... Our data [@shelter].... Following @tellingstories, we consider...
+Our data is sourced from Toronto Police Open Data[@toronto_bicycle_thefts] specifically on the bike thefts dataset which captures details in bike thefts reported in Great Toronto Area. The bike thefts dataset including details about the bicycles, such as cost, make, and type, as well as information about the thefts, such as the date, time, location type, premises type, and neighborhood. Geospatial data, including latitude and longitude, is also included to allow for spatial analysis. A sample of the data variables can be find @tbl-rawdatalist in the appendix. 
 
-Overview text
 
 ## Measurement
 	
 Some paragraphs about how we go from a phenomena in the world to an entry in the dataset.
-
+## Data Processing
 ## Outcome variables
+## Predictor Variable
 
 Add graphs, tables and text. Use sub-sub-headings for each outcome variable or update the subheading to be singular.
 
-
-
-Some of our data is of penguins (@fig-bills), from @palmerpenguins.
 
 ```{r}
 #| label: fig-bills
 #| fig-cap: Bills of penguins
 #| echo: false
 
-ggplot(penguins, aes(x = island, fill = species)) +
-  geom_bar(alpha = 0.8) +
-  scale_fill_manual(values = c("darkorange","purple","cyan4"),
-                    guide = "none") +
-  theme_minimal() +
-  facet_wrap(~species, ncol = 1) +
-  coord_flip()
+#ggplot(penguins, aes(x = island, fill = species)) +
+  #geom_bar(alpha = 0.8) +
+  #scale_fill_manual(values = c("darkorange","purple","cyan4"),
+                 #   guide = "none") +
+  #theme_minimal() +
+  #facet_wrap(~species, ncol = 1) +
+  #coord_flip()
 ```
 
 Talk more about it.
@@ -80,14 +91,14 @@ And also planes (@fig-planes). (You can change the height and width, but don't w
 #| warning: false
 #| message: false
 
-analysis_data <- read_csv(here::here("data/02-analysis_data/analysis_data.csv"))
+#analysis_data <- read_csv(here::here("data/02-analysis_data/analysis_data.csv"))
 
-analysis_data |> 
-  ggplot(aes(x = width, y = length)) +
-  geom_point(alpha = 0.8) +
-  theme_minimal() +
-  labs(x = "Wing width (mm)",
-       y = "Wing length (mm)")
+#analysis_data |> 
+  #ggplot(aes(x = width, y = length)) +
+  #geom_point(alpha = 0.8) +
+  #theme_minimal() +
+  #labs(x = "Wing width (mm)",
+   #    y = "Wing length (mm)")
 ```
 
 Talk way more about it. 
@@ -105,7 +116,7 @@ Use sub-sub-headings for each outcome variable and feel free to combine a few in
 
 
 
-# Model
+# Model {#sec-model}
 
 The goal of our modelling strategy is twofold. Firstly,...
 
@@ -134,7 +145,7 @@ We expect a positive relationship between the size of the wings and time spent a
 We can use maths by including latex between dollar signs, for instance $\theta$.
 
 
-# Results
+# Results {#sec-result}
 
 Our results are summarized in @tbl-modelresults.
 
@@ -169,7 +180,7 @@ modelsummary::modelsummary(
 
 
 
-# Discussion
+# Discussion {#sec-discussion}
 
 ## First discussion point {#sec-first-point}
 
@@ -194,6 +205,31 @@ Weaknesses and next steps should also be included.
 
 # Additional data details
 
+## Raw data variables
+```{r}
+#| echo: false
+#| eval: true
+#| label: tbl-rawdatalist
+#| tbl-cap: "The list of variables and a sample value from the raw data"
+#| warning: false
+#### Create Variable List with Sample Values ####
+variable_list <- tibble(
+  `Variable Name` = names(raw_data),
+  `Sample Value` = sapply(raw_data[1, ], as.character) # Extract the first row as sample values
+)
+
+#### Display the Table in Appendix ####
+variable_list %>%
+  kable(
+    format = "markdown",
+    caption = "List of Variables in the Raw Dataset with Sample Values"
+  )
+
+```
+
+
+
+
 # Model details {#sec-model-details}
 
 ## Posterior predictive check
@@ -212,15 +248,16 @@ In @fig-ppcheckandposteriorvsprior-2 we compare the posterior with the prior. Th
 #| fig-cap: "Examining how the model fits, and is affected by, the data"
 #| fig-subcap: ["Posterior prediction check", "Comparing the posterior with the prior"]
 
-pp_check(first_model) +
-  theme_classic() +
-  theme(legend.position = "bottom")
+#pp_check(first_model) +
+ #theme_classic() +
+ # theme(legend.position = "bottom")
 
-posterior_vs_prior(first_model) +
-  theme_minimal() +
-  scale_color_brewer(palette = "Set1") +
-  theme(legend.position = "bottom") +
-  coord_flip()
+
+#posterior_vs_prior(first_model) +
+#  theme_minimal() +
+#  scale_color_brewer(palette = "Set1") +
+ # theme(legend.position = "bottom") +
+ # coord_flip()
 ```
 
 ## Diagnostics

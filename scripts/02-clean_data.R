@@ -9,8 +9,7 @@
 
 #### Workspace setup ####
 # Load necessary libraries
-library(dplyr)
-library(tidyr)
+library(tidyverse)
 library(arrow)
 library(lubridate) # For date handling
 
