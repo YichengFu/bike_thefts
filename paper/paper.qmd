@@ -57,7 +57,7 @@ Our data is sourced from Toronto Police Open Data[@toronto_bicycle_thefts] speci
 
 
 ## Measurement
-	
+	This study uses data from Toronto’s open data portal, which provides detailed records of bicycle theft incidents across the city. The dataset includes key variables related to theft characteristics, location details, and bike attributes, allowing for a comprehensive analysis of theft patterns in high-risk neighborhoods. The dataset focuses exclusively on stolen bicycles, making it well-suited for examining the spatial and contextual factors influencing thefts. While other datasets, such as police crime reports or neighborhood demographic data, could provide additional context, they were not used due to limited accessibility or lack of detailed bike-specific information.
 Some paragraphs about how we go from a phenomena in the world to an entry in the dataset.
 ## Data Processing
 ## Outcome variables
