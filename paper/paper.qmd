@@ -24,8 +24,8 @@ library(arrow)
 library(here)
 library(rstanarm)
 library(modelsummary)
-
-
+library(forcats)
+library(sf)
 
 raw_data <- read_csv(here::here("data/01-raw_data/Bicycle_Thefts_Open_Data.csv"))
 analysis_data <- read_parquet(here::here("data/02-analysis_data/analysis_data.parquet"))
@@ -41,7 +41,9 @@ Bicycle theft is a persistent urban problem with significant economic and emotio
 The estimand of this study is the likelihood of thefts occurring in high-risk neighborhoods compared to others, given key predictors such as bike cost, premises type, location type, and time of theft. The estimand focuses on understanding the characteristics of thefts in these neighborhoods, allowing us to identify significant factors that differentiate high-risk areas from others. By using a logistic regression model, the analysis aims to quantify these relationships and provide actionable insights.
 
 ## Results Summary
-The analysis highlights significant relationships between theft occurrences in high-risk neighborhoods and predictors such as bike cost, premises type, and time of day. Findings suggest that high-cost bicycles are frequently targeted in public spaces during evening hours, with some neighborhoods experiencing disproportionately higher theft rates.
+The findings of this study reveal significant links between theft occurrences in high-risk neighborhoods and factors such as bike cost, premises type, and time of day. High-cost bicycles are more frequently stolen, reflecting their appeal as valuable targets. Public spaces, including streets and parks, show higher odds of theft compared to more secure environments like houses or garages, likely due to easier access and fewer security measures.
+
+Thefts are more likely to occur during evening hours compared to morning or daytime periods, a trend that aligns with reduced visibility and activity levels during these hours. Additionally, some neighborhoods consistently report higher theft rates, pointing to localized factors such as infrastructure, socioeconomic conditions, or enforcement levels. These findings suggest the need for tailored strategies, including improved lighting, enhanced surveillance, and increased public awareness, to reduce theft risks in vulnerable areas and times.
 
 ## Why this paper matters
 This research provides actionable knowledge to enhance theft prevention in urban settings. By identifying the circumstances under which thefts are more likely to occur, the study offers evidence to inform targeted interventions, such as improved security measures in vulnerable areas. These findings contribute to creating safer urban spaces for cyclists.
@@ -53,65 +55,150 @@ The remainder of this paper is structured as follows. In @sec-data, the overview
 
 ## Overview
 
-Our data is sourced from Toronto Police Open Data[@toronto_bicycle_thefts] specifically on the bike thefts dataset which captures details in bike thefts reported in Great Toronto Area. The bike thefts dataset including details about the bicycles, such as cost, make, and type, as well as information about the thefts, such as the date, time, location type, premises type, and neighborhood. Geospatial data, including latitude and longitude, is also included to allow for spatial analysis. A sample of the data variables can be find @tbl-rawdatalist in the appendix. 
+Our dataset is sourced from Toronto Police Open Data [@toronto_bicycle_thefts], specifically the "Bicycle Thefts" dataset, which provides comprehensive details on bicycle thefts reported across the Greater Toronto Area. This dataset includes variables that capture information about the stolen bicycles, such as their reported cost, make, and type, as well as contextual details about the thefts, including the date, time, location type, premises type, and neighborhood. Additionally, geospatial data, including latitude and longitude coordinates, enables spatial analysis to explore patterns in theft occurrences across different areas. Heatmap of Toronto area by theft counts will be shown in [@sec-data-visualization] using shapefile data sourced from University of Toronto Map Library [@trt_shape].
+
+The dataset’s level of granularity allows for an in-depth examination of theft dynamics, facilitating an analysis of how temporal, spatial, and contextual factors interact to influence theft risk. For example, information on location and premises type provides insights into whether thefts are more common in public or private spaces, while bike cost highlights economic factors associated with thefts. A detailed list of the variables, along with sample values, is provided in the appendix (@tbl-rawdatalist) to offer additional context for understanding the dataset. This structured data enables a robust analysis aimed at identifying patterns and predictors of bicycle theft across Toronto.
 
 
-## Measurement
-	This study uses data from Toronto’s open data portal, which provides detailed records of bicycle theft incidents across the city. The dataset includes key variables related to theft characteristics, location details, and bike attributes, allowing for a comprehensive analysis of theft patterns in high-risk neighborhoods. The dataset focuses exclusively on stolen bicycles, making it well-suited for examining the spatial and contextual factors influencing thefts. While other datasets, such as police crime reports or neighborhood demographic data, could provide additional context, they were not used due to limited accessibility or lack of detailed bike-specific information.
-Some paragraphs about how we go from a phenomena in the world to an entry in the dataset.
+## Measurement 
+This study utilizes data from Toronto’s open data portal, specifically focusing on detailed records of bicycle theft incidents reported across the city. The dataset includes a rich variety of variables that capture theft characteristics, such as the reported value of the bike, the date and time of the theft, and the theft’s status, alongside spatial details like the neighborhood, premises type, and location type. Additionally, geospatial coordinates, including latitude and longitude, enable detailed mapping and spatial analysis of theft hotspots. These features make the dataset well-suited for understanding theft dynamics in high-risk neighborhoods, where theft patterns may differ based on socioeconomic, environmental, or infrastructural factors.
+
+The dataset focuses on stolen bicycles, eliminating the noise of other types of crimes and allowing for a more precise examination of the contextual and temporal factors influencing bicycle thefts. Key variables, such as BIKE_COST, provide insights into economic patterns of theft, while OCC_DATE and OCC_HOUR allow for the identification of temporal trends. Variables like LOCATION_TYPE and PREMISES_TYPE add further depth by categorizing thefts based on their environmental and spatial contexts, helping to discern whether certain locations, such as streets, parks, or garages, are more vulnerable than others.
+
+While other datasets, such as police crime reports or neighborhood demographic data, could have supplemented this analysis, their limited accessibility and lack of detailed information on bike-specific incidents made them unsuitable for the current study. The chosen dataset’s specificity and granularity ensure that the analysis remains focused and relevant to the objective of understanding theft patterns in high-risk neighborhoods. These features enable a rigorous exploration of the relationships between bike attributes, theft characteristics, and spatial factors, supporting the development of targeted interventions to reduce theft risks in vulnerable areas.
+
 ## Data Processing
+The raw dataset, sourced from Toronto’s open data portal, underwent comprehensive processing steps to ensure it was accurate, relevant, and ready for analysis. One of the initial steps involved addressing missing values. Variables with a high proportion of missing data, such as BIKE_MODEL, BIKE_SPEED, and BIKE_COLOUR, were removed as they offered limited analytical value. Additionally, observations with missing critical values like BIKE_COST or BIKE_MAKE were filtered out to maintain data completeness and integrity. This ensured the dataset included only records with sufficient detail for analysis.
+
+The dataset was further refined by excluding theft incidents where the STATUS variable was "UNKNOWN" or "RECOVERED," as these cases were not directly relevant to the study’s focus on thefts. Temporal variables, including OCC_DATE (the occurrence date of the theft) and REPORT_DATE (the date the theft was reported), were standardized to a uniform Date format, facilitating the analysis of trends over time, including seasonal and hourly patterns.
+
+A crucial variable, is_high_risk_neighborhood, was constructed to flag thefts occurring in the top 10 neighborhoods with the highest theft frequencies. This variable was derived by counting incidents per neighborhood and identifying the areas most affected by theft, enabling the study to focus on high-risk locations. The geospatial coordinates LONG_WGS84 and LAT_WGS84 were retained to enable mapping and spatial analysis of theft incidents, providing a foundation for visualizing theft hotspots. Contextual variables, such as LOCATION_TYPE (e.g., street, park, store) and PREMISES_TYPE (e.g., house, garage, public area), were also preserved to explore environmental factors influencing theft risk.
+
+The cleaned dataset was saved as a Parquet file, chosen for its efficient storage and compatibility with downstream modeling and visualization workflows. This format allowed for fast read-write operations and seamless integration with analysis tools. The cleaning and preparation steps ensured that the dataset was robust and aligned with the study’s goal of identifying theft patterns and predictors in high-risk neighborhoods.Packages used in this paper are 'tidyverse' [@tidyverse], 'here' [@here],'arrow' [@arrow], 'lubridate'[@lubridate], 'testthat' [@testthat], 'rstanarm' [@rstanarm], 'knitr' [@knitr], and 'forcats' [@forcats].
+
 ## Outcome variables
-## Predictor Variable
-
-Add graphs, tables and text. Use sub-sub-headings for each outcome variable or update the subheading to be singular.
-
-
+The dataset includes several important variables that serve as predictors in this study. These include **`BIKE_COST`**, a numeric variable representing the reported value of stolen bicycles, which is crucial for understanding how bike value influences theft patterns. **`PREMISES_TYPE`** and **`LOCATION_TYPE`** are categorical variables providing contextual details about where thefts occurred, such as public spaces or residential areas, and their environmental settings like streets or parks. Temporal details are captured through variables such as **`OCC_HOUR`**, representing the hour of the day the theft occurred, and **`OCC_DATE`**, which allows for trends and seasonal patterns to be explored. Geographic variables like **`NEIGHBOURHOOD_140`** and the corresponding longitude and latitude coordinates provide spatial context, enabling an examination of how theft patterns vary across Toronto neighborhoods. Together, these variables form the foundation for identifying significant factors associated with bicycle theft patterns.
 ```{r}
-#| label: fig-bills
-#| fig-cap: Bills of penguins
 #| echo: false
-
-#ggplot(penguins, aes(x = island, fill = species)) +
-  #geom_bar(alpha = 0.8) +
-  #scale_fill_manual(values = c("darkorange","purple","cyan4"),
-                 #   guide = "none") +
-  #theme_minimal() +
-  #facet_wrap(~species, ncol = 1) +
-  #coord_flip()
+#| eval: true
+#| label: tbl-cleandata
+#| tbl-cap: "Preview of the Cleaned Data"
+#| warning: false
+#### Display the first few rows ####
+analysis_data %>%
+  slice_head(n = 5) %>% # Display the first 5 rows
+  select(BIKE_COST, OCC_DATE, LOCATION_TYPE, PREMISES_TYPE, STATUS) %>%
+  kable(
+    format = "markdown",
+  )
 ```
 
-Talk more about it.
+## Predictor variables
+The variable `is_high_risk_neighborhood` is a binary indicator designed to classify thefts based on whether they occurred in one of the top 10 neighborhoods with the highest theft frequencies. This variable was constructed to focus the analysis on areas most impacted by bicycle theft. A value of 1 indicates that the theft occurred in a high-risk neighborhood, while 0 indicates all other neighborhoods. This classification highlights localized clusters of theft activity and enables the study to identify key predictors of theft in these vulnerable areas.
 
-And also planes (@fig-planes). (You can change the height and width, but don't worry about doing that until you have finished every other aspect of the paper - Quarto will try to make it look nice and the defaults usually work well once you have enough text.)
+
+### Distribution of High-Risk Neighborhoods
+
+The majority of reported bicycle thefts occur in a small subset of neighborhoods, demonstrating significant clustering in high-risk areas. Figure @fig-riskdistribution illustrates the distribution of thefts by risk classification with different premises types comparison.
 
 ```{r}
-#| label: fig-planes
-#| fig-cap: Relationship between wing length and width
+#| echo: false
+#| eval: true
+#| label: fig-riskdistribution
+#| warning: false
+# Graph for High-Risk Neighborhood Distribution
+analysis_data %>%
+  mutate(Category = ifelse(is_high_risk_neighborhood == 1, "High-Risk", "Other")) %>%
+  count(Category, PREMISES_TYPE) %>%
+  group_by(PREMISES_TYPE) %>%
+  mutate(Proportion = n / sum(n)) %>%
+  ungroup() %>%
+  mutate(PREMISES_TYPE = fct_reorder(PREMISES_TYPE, Proportion, .fun = max, .desc = TRUE)) %>% # Reorder by max proportion
+  ggplot(aes(x = PREMISES_TYPE, y = Proportion, fill = Category)) +
+  geom_bar(stat = "identity", position = "dodge", width = 0.7) +
+  labs(
+    title = "Proportion of Thefts by Premises Type and Neighborhood Risk",
+    x = "Premises Type",
+    y = "Proportion",
+    fill = "Neighborhood Type"
+  ) +
+  theme_minimal() +
+  coord_flip() +
+  scale_fill_manual(values = c("High-Risk" = "red", "Other" = "gray"))
+
+```
+The bar chart shows that high-risk neighborhoods account for a significant proportion of thefts, despite representing only 10 neighborhoods out of the total. This concentration highlights the importance of focusing on these areas for targeted interventions.
+
+### Characteristics of High-Risk Neighborhoods
+Table @fig-highrisk_summary provides a summary of the top 10 high-risk neighborhoods, including the total number of thefts recorded in each.
+
+```{r}
+#| echo: false
+#| eval: true
+#| label: fig-highrisk_summary
+#| warning: false
+# Ranked Bar Plot for Top 10 High-Risk Neighborhoods
+analysis_data %>%
+  filter(is_high_risk_neighborhood == 1) %>%
+  count(NEIGHBOURHOOD_140, sort = TRUE) %>%
+  slice_max(order_by = n, n = 10) %>% # Specify 'order_by' as 'n'
+  ggplot(aes(x = reorder(NEIGHBOURHOOD_140, n), y = n, fill = n)) +
+  geom_bar(stat = "identity", width = 0.7) +
+  coord_flip() +
+  labs(
+    title = "Top 10 High-Risk Neighborhoods by Theft Count",
+    x = "Neighborhood",
+    y = "Number of Thefts"
+  ) +
+  scale_fill_gradient(low = "blue", high = "red") +
+  theme_minimal() +
+  theme(legend.position = "none")
+
+```
+
+## Data Visualizations {#sec-data-visualization}
+```{r}
 #| echo: false
 #| warning: false
 #| message: false
+#| label: thefts_map
 
-#analysis_data <- read_csv(here::here("data/02-analysis_data/analysis_data.csv"))
+# Load Toronto neighborhood shapefile
+neighbourhoods_sf <- st_read(here::here("data/01-raw_data/Neighbourhoods - 4326.shp"),quiet = TRUE)
 
-#analysis_data |> 
-  #ggplot(aes(x = width, y = length)) +
-  #geom_point(alpha = 0.8) +
-  #theme_minimal() +
-  #labs(x = "Wing width (mm)",
-   #    y = "Wing length (mm)")
+# Load and process the bicycle theft data
+theft_data <- read.csv(here::here("data/01-raw_data/Bicycle_Thefts_Open_Data.csv"))
+
+# Count the number of thefts by neighborhood code, excluding "NSA"
+theft_counts <- theft_data %>%
+  filter(HOOD_158 != "NSA") %>%
+  filter(STATUS != "Recovered") %>%
+  group_by(HOOD_158) %>%
+  summarize(theft_count = n())
+
+# Merge theft counts with neighborhood shapefile
+neighbourhoods_sf <- neighbourhoods_sf %>%
+  left_join(theft_counts, by = c("AREA_LO6" = "HOOD_158"))
+
+# Replace NA theft_count with 0 for neighborhoods with no recorded thefts
+neighbourhoods_sf$theft_count[is.na(neighbourhoods_sf$theft_count)] <- 0
+
+# Plot the map, suppressing warnings
+suppressWarnings({
+  ggplot(data = neighbourhoods_sf) +
+    geom_sf(aes(fill = theft_count), color = "#B0B0B0", linewidth = 0.3) +  # Use linewidth instead of size
+    scale_fill_viridis_c(option = "plasma", name = "Theft Count") +  # Use a color scale for counts
+    labs(title = "Bicycle Theft Count by Neighborhood in Toronto",
+         x = "Longitude", y = "Latitude") +
+    theme_minimal() +
+    theme(
+      plot.title = element_text(hjust = 0.5, size = 13, face = "bold"),
+      axis.title = element_text(size = 14),
+      legend.title = element_text(size = 12),
+      legend.text = element_text(size = 10)
+    )
+})
 ```
-
-Talk way more about it. 
-
-## Predictor variables
-
-Add graphs, tables and text.
-
-Use sub-sub-headings for each outcome variable and feel free to combine a few into one if they go together naturally.
-
-
-
-
 
 
 
@@ -226,7 +313,6 @@ variable_list %>%
   )
 
 ```
-
 
 
 
