@@ -116,7 +116,7 @@ The variable `is_high_risk_neighborhood` is a binary indicator designed to class
 
 ## Data Visualizations {#sec-data-visualization}
 
-The majority of reported bicycle thefts occur in a small subset of neighborhoods, demonstrating significant clustering in high-risk areas. @fig-riskdistribution illustrates the distribution of thefts by risk classification with different premises types comparison in top ten risky neighborhoods .[@fig-thefts_map] visualizes bicycle theft counts by neighborhood across Toronto, highlighting spatial patterns in theft frequency. More detailed visualizations of the data are located in [@sec-data-details-visualizations]
+The majority of reported bicycle thefts occur in a small subset of neighborhoods, demonstrating significant clustering in high-risk areas. @fig-riskdistribution illustrates the distribution of thefts by risk classification with different premises types comparison in top ten risky neighborhoods . [@fig-thefts_map] visualizes bicycle theft counts by neighborhood across Toronto, highlighting spatial patterns in theft frequency. More detailed visualizations of the data are located in [@sec-data-details-visualizations]
 
 ```{r}
 #| echo: false
@@ -186,7 +186,7 @@ suppressWarnings({
 })
 ```
 
-The intensity of the color gradient, ranging from dark purple (low theft count) to bright yellow (high theft count), indicates the relative number of bicycle thefts in each neighborhood. The visualization reveals that bicycle thefts are highly concentrated in certain neighborhoods, particularly in the downtown core and surrounding areas, as indicated by the bright yellow and orange regions. These areas may be more susceptible to theft due to higher population density, greater cycling activity, or specific environmental factors such as the availability of parking infrastructure or security measures. This map underscores the spatial disparity in theft incidents and suggests that targeted interventions, such as improved bike parking security and increased awareness campaigns, may be particularly beneficial in high-theft neighborhoods. This visualization also provides a foundation for further analysis, such as exploring the relationship between theft hotspots and socioeconomic or infrastructure variables.
+[@fig-thefts_map] ranges from dark purple (low theft count) to bright yellow (high theft count), indicates the relative number of bicycle thefts in each neighborhood. The visualization reveals that bicycle thefts are highly concentrated in certain neighborhoods, particularly in the downtown core and surrounding areas, as indicated by the bright yellow and orange regions. These areas may be more susceptible to theft due to higher population density, greater cycling activity, or specific environmental factors such as the availability of parking infrastructure or security measures. This map underscores the spatial disparity in theft incidents and suggests that targeted interventions, such as improved bike parking security and increased awareness campaigns, may be particularly beneficial in high-theft neighborhoods. This visualization also provides a foundation for further analysis, such as exploring the relationship between theft hotspots and socioeconomic or infrastructure variables.
 
 # Model {#sec-model}
 
@@ -221,7 +221,15 @@ The Bayesian logistic regression model provides a robust framework for examining
 
 # Results {#sec-result}
 
-Our results are summarized in @tbl-modelresults.
+Our results are summarized in @tbl-modelresults. The intercept, representing the baseline log-odds of a theft occurring in such neighborhoods when all other predictors are held constant, is estimated at −0.386. This negative value suggests that, in the absence of other influencing factors, the likelihood of thefts in high-risk areas is relatively low. The effect of bike cost, represented as the log-transformed variable (log_bike_cost), is minimal and statistically insignificant (0.031). This indicates that, after accounting for premises type and time of day, the cost of the bike alone does not strongly affect the likelihood of thefts occurring in high-risk neighborhoods. While high-cost bikes may attract theft in general, this result implies that contextual factors, rather than cost, play a more significant role in shaping theft patterns in these areas.
+
+Premises type emerges as an important factor with notable variability in its impact. Theft likelihood is higher in "Commercial" (0.935) and "Educational" (0.630) premises compared to the reference category, suggesting that these locations may be more accessible or targeted by thieves. Conversely, thefts are less likely to occur at "House" (−1.034) and "Other" (−0.473) premises, indicating these settings may offer more security or deterrents. "Outside" premises (0.662) show a moderate positive association, while "Transit" (−0.575) premises display a slight negative effect, suggesting varying levels of theft risk depending on location type. Time of day, categorized into "Morning," "Afternoon," "Evening," and "Night," shows relatively small effects on theft likelihood. Compared to "Afternoon" (the reference category), "Evening" (−0.120), "Night" (−0.132), and "Morning" (−0.162) exhibit slightly reduced log-odds. These findings suggest minimal differences in theft risk across times of the day within high-risk neighborhoods, potentially reflecting consistent levels of vigilance or opportunity.
+
+The model’s fit, as indicated by an $R^2$ value of 0.100, shows that 10% of the variation in theft likelihood is explained by the included predictors. While this value suggests the presence of unaccounted-for factors, the model’s log-likelihood and information criteria (LOOIC: 1299.7, WAIC: 1299.6) indicate reasonable performance for this type of analysis. 
+
+Credible intervals for the predictors, visualized in @fig-modelresults1, reveal that several premises types, such as "Commercial" and "House," show statistically significant effects, as their intervals do not cross zero. These results highlight the importance of contextual factors like premises type in determining theft likelihood and underscore the need for targeted strategies to mitigate risks in high-risk neighborhoods.
+
+Overall, the findings emphasize that while bike cost may not significantly influence thefts in high-risk areas, the type of premises and broader contextual factors play a pivotal role. These insights can inform more effective theft prevention strategies by focusing on specific high-risk premises and addressing vulnerabilities in these environments.
 
 ```{r}
 #| echo: false
@@ -255,10 +263,11 @@ modelsummary(
 ```
 
 ## Model Validation
+For posterior predictive checks, @fig-post_dist demonstrates that the posterior distribution from our Bayesian logistic regression model aligns closely with the observed data on bike thefts in high-risk neighborhoods. This suggests that the model captures the underlying patterns of theft occurrences accurately, supporting the robustness of its predictions. Similarly, @fig-post_prior compares the posterior to the prior distributions, highlighting parameter changes such as those for "log_bike_cost" and "time_of_day." These shifts indicate that the observed data provided substantial information, refining our prior beliefs about these predictors.
 
+The trace plots in @fig-trace1 & @fig-trace2 show stable and horizontal chains with adequate mixing across iterations, suggesting no convergence issues in the Markov chain Monte Carlo process. Furthermore, the Rhat plot in @fig-rhat confirms this conclusion, as all Rhat values are close to 1 and well below the threshold of 1.05. This demonstrates strong convergence and reliability of the posterior estimates.
 
-
-
+Additional details and supporting figures can be found in Appendix @sec-model-details.
 
 # Discussion {#sec-discussion}
 
