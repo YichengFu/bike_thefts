@@ -36,4 +36,4 @@ high_risk_model <- stan_glm(
 )
 
 #### Save model ####
-saveRDS(high_risk_model,file = "models/first_model.rds")
+saveRDS(high_risk_model,file = "models/bike_theft_risk_model.rds")
