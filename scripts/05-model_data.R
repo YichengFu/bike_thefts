@@ -26,7 +26,7 @@ data_reduced <-
   slice_sample(n = 1000)
 
 #### Logistic Regression Model ####
-high_risk_model <- stan_glm(
+bike_theft_risk_model <- stan_glm(
   formula = is_high_risk_neighborhood ~ BIKE_COST + PREMISES_TYPE + LOCATION_TYPE + OCC_HOUR,
   data = data_reduced,
   family = binomial(link = "logit"),
@@ -36,4 +36,4 @@ high_risk_model <- stan_glm(
 )
 
 #### Save model ####
-saveRDS(high_risk_model,file = "models/bike_theft_risk_model.rds")
+saveRDS(bike_theft_risk_model,file = "models/bike_theft_risk_model.rds")
