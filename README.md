@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repository investigates patterns and predictors of bicycle theft in Toronto using statistical modeling with data from Toronto Police Open Data (2013–present). The analysis explores how factors such as neighborhood, time of day, theft type, and bicycle value influence the likelihood of theft. Using logistic regression, the study identifies significant predictors and provides insights to guide theft prevention strategies. The repository includes data, code, and documentation supporting the analysis and findings.
+This repository explores patterns and predictors of bicycle theft in Toronto using data from Toronto Police Open Data (2013–present). Through logistic regression and Bayesian modeling, the analysis identifies significant predictors such as neighborhood, time of day, theft type, and bicycle value. The findings aim to guide theft prevention strategies and inform urban safety measures. The repository includes all data, code, and documentation necessary to reproduce the analysis and results.
 
 ## Repository Structure
 
@@ -14,8 +14,7 @@ This repository investigates patterns and predictors of bicycle theft in Toronto
   - `02-analysis_data/`: Contains cleaned and processed data for analysis.
     - `analysis_data.parquet`
 
-- **models/**: Contains saved model objects in RDS format for the analysis of logistic model.
-
+- **models/**: Contains saved model objects in RDS format for Bayesian logisticmodels.
 
 - **other/**
   - `llm_usage/`: Documentation of interactions with large language models.
@@ -24,6 +23,7 @@ This repository investigates patterns and predictors of bicycle theft in Toronto
     - `dataset.jpg`
     - `EDA.jpg`
     - `output.jpg`
+  - `datasheet/`: Discussion of dataset used in details. 
 
 - **paper/**: Files related to the final research paper.
   - `paper.pdf`: The final report.
