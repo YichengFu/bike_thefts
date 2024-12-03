@@ -7,7 +7,7 @@ thanks: "Code and data are available at: https://github.com/YichengFu/bike_theft
 date: today
 date-format: long
 toc: true
-abstract: "This study explores patterns of bicycle theft in Toronto, focusing on thefts in high-risk neighborhoods using logistic regression. The analysis identifies bike cost, premises type, and time of occurrence as significant predictors of thefts in high-risk neighborhoods. Results show that high-cost bikes are disproportionately stolen in public spaces and during evening hours, with specific neighborhoods exhibiting elevated theft rates. These findings highlight risk factors and provide actionable insights for targeted interventions, urban planning, and improved security measures in vulnerable areas."
+abstract: "This analysis investigates bicycle theft in Toronto, emphasizing high-risk neighborhoods. Using Bayesian logistic regression, the study identifies key predictors, including premises type, bike cost, and time of day. Results reveal that theft likelihood increases in public spaces and during evening hours, with high-cost bicycles as prime targets. Specific neighborhoods consistently report elevated theft rates, suggesting localized vulnerabilities. These findings support targeted interventions, such as improved security measures and community awareness, to mitigate theft risks and enhance urban safety."
 format: pdf
 number-sections: true
 bibliography: references.bib
