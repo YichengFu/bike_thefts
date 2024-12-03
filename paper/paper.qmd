@@ -271,19 +271,32 @@ Additional details and supporting figures can be found in Appendix @sec-model-de
 
 # Discussion {#sec-discussion}
 
-## First discussion point {#sec-first-point}
+## The Role of Premises in Shaping Bike Theft Risks  
+Our analysis highlights the significant influence of premises type on the likelihood of bike thefts. Public spaces, including "Commercial" and "Outside" premises, exhibit the highest estimated coefficients, reinforcing their status as high-risk areas. This finding is consistent with the assumption that public and commercial spaces, with their high foot traffic and limited security, offer increased opportunities for theft. Conversely, "House" premises have a negative coefficient, indicating a reduced likelihood of theft when bikes are stored at private residences. This reflects the higher level of control and security afforded by private properties.
 
-If my paper were 10 pages, then should be be at least 2.5 pages. The discussion is a chance to show off what you know and what you learnt from all this.
+An unexpected finding pertains to "Transit" premises, which also display a negative coefficient. Although transit areas are often perceived as high-risk due to the volume of commuters, the results suggest that targeted measures, such as surveillance cameras and police patrols, may be deterring theft in these zones. However, the wider confidence intervals around this estimate indicate some uncertainty, highlighting the need for further investigation into specific security practices in transit areas.
 
-## Second discussion point
+## Timing Matters: How Time of Day Influences Bike Thefts  
+The timing of bike thefts also emerges as an important factor. Our model categorizes thefts into "Morning," "Afternoon," "Evening," and "Night" periods. Although the differences are subtler compared to premises types, theft likelihood increases slightly during "Night" hours, as reflected by its positive coefficient. This finding aligns with the widely held belief that lower visibility and reduced pedestrian presence at night create favorable conditions for theft.
 
-Please don't use these as sub-heading labels - change them to be what your point actually is.
+"Morning" and "Afternoon" periods, in contrast, exhibit lower coefficients, suggesting reduced theft activity during these times. This could be attributed to the higher visibility and increased presence of commuters, shoppers, and general public activity during daylight hours, which may act as a deterrent. These findings underscore the potential for targeted prevention measures, such as enhanced lighting and increased surveillance, particularly during evening and night hours.
 
-## Third discussion point
+## The Price of Vulnerability: Impact of Bike Cost on Theft Likelihood  
+The value of the bike, as measured by its log-transformed cost, plays a key role in predicting theft likelihood. The positive coefficient indicates that more expensive bikes are more likely to be targeted. This aligns with expectations, as high-value bikes offer greater potential resale value for thieves. However, the relatively small effect size suggests that factors like ease of theft and accessibility may often outweigh bike cost in determining theft likelihood.
 
-## Weaknesses and next steps
+This result underscores the need for increased awareness among bike owners, particularly those with high-value bikes, regarding secure storage practices. It also highlights the potential benefits of policy interventions, such as secure parking facilities in theft-prone areas, to mitigate risks associated with high-cost bicycles.
 
-Weaknesses and next steps should also be included.
+## Limitations and Challenges in Understanding Theft Patterns  
+
+### Addressing the Exclusion of Location Type as a Predictor  
+Due to multicollinearity issues, location type was excluded from the final model. This limits the granularity of our findings, particularly in understanding theft risks associated with specific public areas, such as parks or transit stations. While premises type captures broader contextual differences, a more refined inclusion of location-based variables could provide a deeper understanding of the spatial dynamics of bike theft.
+
+### Balancing Generalizability Across Neighborhood Contexts  
+The model focuses on thefts occurring in high-risk neighborhoods, which may limit its applicability to areas with lower theft incidence. While this approach allows for targeted insights into urban centers and densely populated regions, expanding the dataset to include a more diverse range of neighborhoods could enhance generalizability and provide a fuller picture of theft dynamics across different settings.
+
+## Enhancing Prevention: Directions for Future Research and Policy  
+Future research should aim to incorporate additional contextual variables, such as weather conditions, population density, and local crime rates, to improve predictive accuracy. Enhanced geospatial analyses, including hot spot mapping within neighborhoods, could further refine our understanding of theft patterns. Moreover, investigating the effectiveness of interventions such as secure parking zones, surveillance technologies, and community engagement programs could provide actionable insights to reduce bike theft. These findings could inform policies and practices aimed at improving bike security and safety in urban areas.
+
 
 \newpage
 
