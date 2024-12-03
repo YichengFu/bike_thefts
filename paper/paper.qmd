@@ -65,7 +65,7 @@ This research provides actionable knowledge to enhance theft prevention in urban
 
 ## Paper Structure:
 
-The remainder of this paper is structured as follows. In @sec-data, the overview of the data used in this study and the variables of interests will be introduced. Further the data normalization will be discussed in details. @sec-model illustrates the Bayesian logistic regression model built in our analysis, some details include model set up, assumptions and justification. @sec-result highlights the result of the model visualizing using tables and graphs. Lastly, @sec-discussion contains discussion of the analysis based on findings, the limitations of the model and the suggestion for future research.
+The remainder of this paper is structured as follows. In @sec-data, the overview of the data used in this study and the variables of interests will be introduced. Further the data normalization will be discussed in details. @sec-model illustrates the Bayesian logistic regression model built in our analysis, some details include model set up, assumptions and justification. @sec-result highlights the result of the model visualizing using tables and graphs. Lastly, @sec-discussion contains discussion of the analysis based on findings, the limitations of the model and the suggestion for future research. @sec-survey contains information about the survey as well as its design and limitations. @sec-data-details contains more information about the original data and its visualizations. @sec-model-details shows more plots and information about the model built for this research. 
 
 # Data {#sec-data}
 
@@ -73,7 +73,7 @@ The remainder of this paper is structured as follows. In @sec-data, the overview
 
 Our dataset is sourced from Toronto Police Open Data [@toronto_bicycle_thefts], specifically the "Bicycle Thefts" dataset, which provides comprehensive details on bicycle thefts reported across the Greater Toronto Area. This dataset includes variables that capture information about the stolen bicycles, such as their reported cost, make, and type, as well as contextual details about the thefts, including the date, time, premises type, and neighborhood. Additionally, geospatial data, including latitude and longitude coordinates, enables spatial analysis to explore patterns in theft occurrences across different areas. Heatmap of Toronto area by theft counts and other informative plots will be shown in [@sec-data-visualization]. The heatmap utilized shapefile data sourced from University of Toronto Map Library [@trt_shape].
 
-The dataset’s level of granularity allows for an in-depth examination of theft dynamics, facilitating an analysis of how temporal, spatial, and contextual factors interact to influence theft risk. For example, information on premises type provides insights into whether thefts are more common in public or private spaces, while bike cost highlights economic factors associated with thefts. A detailed list of the variables, along with sample values, is provided in the appendix (@sec-data-details) (@tbl-rawdatalist) to offer additional context for understanding the dataset. This structured data enables a robust analysis aimed at identifying patterns and predictors of bicycle theft across Toronto.
+The dataset’s level of granularity allows for an in-depth examination of theft dynamics, facilitating an analysis of how temporal, spatial, and contextual factors interact to influence theft risk. For example, information on premises type provides insights into whether thefts are more common in public or private spaces, while bike cost highlights economic factors associated with thefts. A detailed list of the variables, along with sample values, is provided in the appendix [@sec-data-details] (@tbl-rawdatalist) to offer additional context for understanding the dataset. This structured data enables a robust analysis aimed at identifying patterns and predictors of bicycle theft across Toronto.
 
 ## Measurement
 
@@ -319,7 +319,7 @@ Future research should aim to incorporate additional contextual variables, such 
 
 # Appendix {.unnumbered}
 
-# Idealized Survey Methodology
+# Idealized Survey Methodology {#sec-survey}
 
 ## Survey Objectives
 
@@ -371,7 +371,7 @@ The survey has a total budget of **\$100,000**, allocated as follows:
 
 Participants will be welcomed with the following message:
 
-"Thank you for participating in our survey on bike thefts in Toronto. We aim to understand theft patterns and develop strategies to improve security for cyclists. Your input is invaluable and will help inform policies to reduce bike thefts. This survey will take approximately 5 minutes to complete, and your responses will remain anonymous. As a thank-you, you will receive a \$20 gift card."
+"Thank you for participating in our survey on bike thefts in Toronto. We aim to understand theft patterns and develop strategies to improve security for cyclists. Your input is invaluable and will help inform policies to reduce bike thefts. This survey will take approximately 5 minutes to complete, and your responses will remain anonymous. As a thank-you, you will receive a $20 gift card though your email within 3 business days. "
 
 ### Key Questions
 
@@ -440,7 +440,11 @@ The survey includes structured questions targeting bike theft experiences and pe
 
 ### Closing Message
 
-Participants receive a confirmation message: "Thank you for completing the survey! Your input will help us understand and reduce bike thefts in Toronto. Your \$20 gift card will be emailed within five business days.
+"Participants receive a confirmation message: "Thank you for completing the survey! Your input will help us understand and reduce bike thefts in Toronto. Your \$20 gift card will be emailed within three business days.
+
+For any questions about the survey or your gift card, please contact: tommy.fu@mail.utoronto.ca ”
+
+Idealized Survey can be found here: https://forms.gle/TEMMyXt31XbYMW6c7
 
 ## Bias Mitigation Strategies
 
@@ -556,6 +560,8 @@ analysis_data %>%
 
 ```
 
+
+\newpage
 # Model details {#sec-model-details}
 
 ## Posterior predictive check
