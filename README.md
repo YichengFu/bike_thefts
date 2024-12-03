@@ -14,8 +14,8 @@ This repository explores patterns and predictors of bicycle theft in Toronto usi
   - `02-analysis_data/`: Contains cleaned and processed data for analysis.
     - `analysis_data.parquet`
 
-- **models/**: Contains saved model objects in RDS format for Bayesian logisticmodels.
-
+- **models/**
+  - `bike_theft_risk_model.rds/': Contains saved model objects in RDS format for Bayesian logistic models.
 - **other/**
   - `llm_usage/`: Documentation of interactions with large language models.
     - `usage.txt`
