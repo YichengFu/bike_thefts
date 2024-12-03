@@ -26,6 +26,8 @@ library(rstanarm)
 library(modelsummary)
 library(forcats)
 library(sf)
+library(kableExtra)
+
 
 raw_data <- read_csv(here::here("data/01-raw_data/Bicycle_Thefts_Open_Data.csv"))
 analysis_data <- read_parquet(here::here("data/02-analysis_data/analysis_data.parquet"))
@@ -89,7 +91,7 @@ The dataset was further refined by excluding theft incidents where the STATUS va
 
 A crucial variable, is_high_risk_neighborhood, was constructed to flag thefts occurring in the top 10 neighborhoods with the highest theft frequencies. This variable was derived by counting incidents per neighborhood and identifying the areas most affected by theft, enabling the study to focus on high-risk locations. The geospatial coordinates LONG_WGS84 and LAT_WGS84 were retained to enable mapping and spatial analysis of theft incidents, providing a foundation for visualizing theft hotspots. Contextual variables, such as PREMISES_TYPE (e.g., house, garage, public area), were also preserved to explore environmental factors influencing theft risk.
 
-The cleaned dataset was saved as a Parquet file, chosen for its efficient storage and compatibility with downstream modeling and visualization workflows. This format allowed for fast read-write operations and seamless integration with analysis tools. The cleaning and preparation steps ensured that the dataset was robust and aligned with the study’s goal of identifying theft patterns and predictors in high-risk neighborhoods.Packages used in this paper are 'tidyverse' [@tidyverse], 'here' [@here],'arrow' [@arrow], 'lubridate'[@lubridate], 'testthat' [@testthat], 'rstanarm' [@rstanarm],'sf'[@sf], 'knitr' [@knitr], and 'forcats' [@forcats].
+The cleaned dataset was saved as a Parquet file, chosen for its efficient storage and compatibility with downstream modeling and visualization workflows. This format allowed for fast read-write operations and seamless integration with analysis tools. The cleaning and preparation steps ensured that the dataset was robust and aligned with the study’s goal of identifying theft patterns and predictors in high-risk neighborhoods.Packages used in this paper are 'tidyverse' [@tidyverse], 'here' [@here],'arrow' [@arrow], 'lubridate'[@lubridate], 'testthat' [@testthat], 'rstanarm' [@rstanarm], 'sf'[@sf], 'knitr' [@knitr], 'forcats' [@forcats] and 'kableExtra' [@kableExtra].
 
 ## Outcome variables
 
@@ -101,13 +103,22 @@ The dataset includes several important variables that serve as predictors in thi
 #| label: tbl-cleandata
 #| tbl-cap: "Preview of the Cleaned Data"
 #| warning: false
+
 #### Display the first few rows ####
 analysis_data %>%
   slice_head(n = 5) %>% # Display the first 5 rows
-  select(BIKE_COST, OCC_DATE, LOCATION_TYPE, PREMISES_TYPE) %>%
+  select(
+    `Occ Date` = OCC_DATE,
+    `Location` = LOCATION_TYPE,
+    `Premises` = PREMISES_TYPE,
+    `Bike Cost` = BIKE_COST
+  ) %>%
   kable(
     format = "markdown",
+    align = "c" # Center-align columns
   )
+
+
 ```
 
 ## Predictor variables
@@ -140,7 +151,7 @@ analysis_data %>%
 
 ```
 
-The bar chart shows that high-risk neighborhoods account for a significant proportion of thefts, despite representing only 10 neighborhoods out of the total. This concentration highlights the importance of focusing on these areas for targeted interventions.
+@fig-riskdistribution illustrates the distribution of bike thefts across different premises types within high-risk neighborhoods. Despite encompassing only 10 neighborhoods, these areas contribute significantly to the overall theft count, underscoring their vulnerability. The figure also highlights variability in premises types, with public and commercial spaces such as "Outside" and "Commercial" showing the highest theft counts, likely due to high foot traffic and lower security measures. Conversely, private premises like "House" exhibit fewer incidents, indicating better security controls. These findings emphasize the necessity of tailored intervention strategies, such as enhanced surveillance and secure bike storage options, to mitigate theft risks in these high-priority areas.
 
 ```{r}
 #| echo: false
@@ -195,8 +206,8 @@ suppressWarnings({
 In this analysis, we utilized a Bayesian logistic regression model to examine the factors associated with bicycle thefts in high-risk neighborhoods. The dependent variable is `is_high_risk_neighborhood`, a binary indicator identifying whether a theft occurred in one of the top 10 neighborhoods with the highest theft counts. Detailed model diagnostics and background information are available in Appendix [@sec-model-details].
 
 ## Model set-up
-The model is specified as follows: 
-\begin{align}
+
+The model is specified as follows: \begin{align}
 y_i \mid \pi_i &\sim \text{Bern}(\pi_i) \\
 \text{logit}(\pi_i) &= \alpha + \beta_1 \times \text{LOG\_BIKE\_COST}_i 
     + \beta_2 \times \text{PREMISES\_TYPE}_i \notag \\
@@ -208,16 +219,14 @@ y_i \mid \pi_i &\sim \text{Bern}(\pi_i) \\
 Here, $y_i$ represents the binary outcome variable indicating whether a theft occurred in a high-risk neighborhood. The probability of this event, ($\pi_i$) is modeled using a logistic link function. Predictors in the model include the reported BIKE_COST, the PREMISES_TYPE of the theft, and the time of day (OCC_HOUR) when the theft occurred.Weakly informative priors were used to regularize the model. Specifically, all parameters($\alpha$,$\beta_1$,$\beta_2$,$\beta_3$) were assigned normal prior distributions with a mean of 0 and a standard deviation of 2.5. Sampling for the model was conducted using Markov Chain Monte Carlo (MCMC) methods implemented in the rstanarm package @rstanarm in R[@citeR]. To optimize runtime, a random sample of 1000 data entries was used, with a seed of 215 to ensure reproducibility. Model diagnostics, including convergence checks and posterior summaries, are presented in Appendix [@sec-model-details].
 
 ## Model justification
+
 The Bayesian logistic regression was chosen for its suitability for binary outcome variables and its ability to incorporate prior information. This approach enables a probabilistic interpretation of results, allowing for uncertainty quantification in parameter estimates. The use of weakly informative priors helps stabilize the model and prevents overfitting, particularly given the limited sample size.
 
 Regarding the predictors, we hypothesize the following relationships:
 
--BIKE_COST: Higher-cost bicycles are more likely to be targeted in thefts due to their resale value and desirability.
--PREMISES_TYPE: Theft risk may be higher in public or semi-public spaces, such as streets and parks, where security measures are limited.
--OCC_HOUR: Theft likelihood is expected to increase during evening hours when visibility and public activity are reduced.
+-BIKE_COST: Higher-cost bicycles are more likely to be targeted in thefts due to their resale value and desirability. -PREMISES_TYPE: Theft risk may be higher in public or semi-public spaces, such as streets and parks, where security measures are limited. -OCC_HOUR: Theft likelihood is expected to increase during evening hours when visibility and public activity are reduced.
 
 The Bayesian logistic regression model provides a robust framework for examining these relationships, offering insights into the factors influencing thefts in high-risk neighborhoods.
-
 
 # Results {#sec-result}
 
@@ -225,7 +234,7 @@ Our results are summarized in @tbl-modelresults. The intercept, representing the
 
 Premises type emerges as an important factor with notable variability in its impact. Theft likelihood is higher in "Commercial" (0.935) and "Educational" (0.630) premises compared to the reference category, suggesting that these locations may be more accessible or targeted by thieves. Conversely, thefts are less likely to occur at "House" (−1.034) and "Other" (−0.473) premises, indicating these settings may offer more security or deterrents. "Outside" premises (0.662) show a moderate positive association, while "Transit" (−0.575) premises display a slight negative effect, suggesting varying levels of theft risk depending on location type. Time of day, categorized into "Morning," "Afternoon," "Evening," and "Night," shows relatively small effects on theft likelihood. Compared to "Afternoon" (the reference category), "Evening" (−0.120), "Night" (−0.132), and "Morning" (−0.162) exhibit slightly reduced log-odds. These findings suggest minimal differences in theft risk across times of the day within high-risk neighborhoods, potentially reflecting consistent levels of vigilance or opportunity.
 
-The model’s fit, as indicated by an $R^2$ value of 0.100, shows that 10% of the variation in theft likelihood is explained by the included predictors. While this value suggests the presence of unaccounted-for factors, the model’s log-likelihood and information criteria (LOOIC: 1299.7, WAIC: 1299.6) indicate reasonable performance for this type of analysis. 
+The model’s fit, as indicated by an $R^2$ value of 0.100, shows that 10% of the variation in theft likelihood is explained by the included predictors. While this value suggests the presence of unaccounted-for factors, the model’s log-likelihood and information criteria (LOOIC: 1299.7, WAIC: 1299.6) indicate reasonable performance for this type of analysis.
 
 Credible intervals for the predictors, visualized in @fig-modelresults1, reveal that several premises types, such as "Commercial" and "House," show statistically significant effects, as their intervals do not cross zero. These results highlight the importance of contextual factors like premises type in determining theft likelihood and underscore the need for targeted strategies to mitigate risks in high-risk neighborhoods.
 
@@ -263,6 +272,7 @@ modelsummary(
 ```
 
 ## Model Validation
+
 For posterior predictive checks, @fig-post_dist demonstrates that the posterior distribution from our Bayesian logistic regression model aligns closely with the observed data on bike thefts in high-risk neighborhoods. This suggests that the model captures the underlying patterns of theft occurrences accurately, supporting the robustness of its predictions. Similarly, @fig-post_prior compares the posterior to the prior distributions, highlighting parameter changes such as those for "log_bike_cost" and "time_of_day." These shifts indicate that the observed data provided substantial information, refining our prior beliefs about these predictors.
 
 The trace plots in @fig-trace1 & @fig-trace2 show stable and horizontal chains with adequate mixing across iterations, suggesting no convergence issues in the Markov chain Monte Carlo process. Furthermore, the Rhat plot in @fig-rhat confirms this conclusion, as all Rhat values are close to 1 and well below the threshold of 1.05. This demonstrates strong convergence and reliability of the posterior estimates.
@@ -271,38 +281,183 @@ Additional details and supporting figures can be found in Appendix @sec-model-de
 
 # Discussion {#sec-discussion}
 
-## The Role of Premises in Shaping Bike Theft Risks  
+## The Role of Premises in Shaping Bike Theft Risks
+
 Our analysis highlights the significant influence of premises type on the likelihood of bike thefts. Public spaces, including "Commercial" and "Outside" premises, exhibit the highest estimated coefficients, reinforcing their status as high-risk areas. This finding is consistent with the assumption that public and commercial spaces, with their high foot traffic and limited security, offer increased opportunities for theft. Conversely, "House" premises have a negative coefficient, indicating a reduced likelihood of theft when bikes are stored at private residences. This reflects the higher level of control and security afforded by private properties.
 
 An unexpected finding pertains to "Transit" premises, which also display a negative coefficient. Although transit areas are often perceived as high-risk due to the volume of commuters, the results suggest that targeted measures, such as surveillance cameras and police patrols, may be deterring theft in these zones. However, the wider confidence intervals around this estimate indicate some uncertainty, highlighting the need for further investigation into specific security practices in transit areas.
 
-## Timing Matters: How Time of Day Influences Bike Thefts  
+## Timing Matters: How Time of Day Influences Bike Thefts
+
 The timing of bike thefts also emerges as an important factor. Our model categorizes thefts into "Morning," "Afternoon," "Evening," and "Night" periods. Although the differences are subtler compared to premises types, theft likelihood increases slightly during "Night" hours, as reflected by its positive coefficient. This finding aligns with the widely held belief that lower visibility and reduced pedestrian presence at night create favorable conditions for theft.
 
 "Morning" and "Afternoon" periods, in contrast, exhibit lower coefficients, suggesting reduced theft activity during these times. This could be attributed to the higher visibility and increased presence of commuters, shoppers, and general public activity during daylight hours, which may act as a deterrent. These findings underscore the potential for targeted prevention measures, such as enhanced lighting and increased surveillance, particularly during evening and night hours.
 
-## The Price of Vulnerability: Impact of Bike Cost on Theft Likelihood  
+## The Price of Vulnerability: Impact of Bike Cost on Theft Likelihood
+
 The value of the bike, as measured by its log-transformed cost, plays a key role in predicting theft likelihood. The positive coefficient indicates that more expensive bikes are more likely to be targeted. This aligns with expectations, as high-value bikes offer greater potential resale value for thieves. However, the relatively small effect size suggests that factors like ease of theft and accessibility may often outweigh bike cost in determining theft likelihood.
 
 This result underscores the need for increased awareness among bike owners, particularly those with high-value bikes, regarding secure storage practices. It also highlights the potential benefits of policy interventions, such as secure parking facilities in theft-prone areas, to mitigate risks associated with high-cost bicycles.
 
-## Limitations and Challenges in Understanding Theft Patterns  
+## Limitations and Challenges in Understanding Theft Patterns
 
-### Addressing the Exclusion of Location Type as a Predictor  
+### Addressing the Exclusion of Location Type as a Predictor
+
 Due to multicollinearity issues, location type was excluded from the final model. This limits the granularity of our findings, particularly in understanding theft risks associated with specific public areas, such as parks or transit stations. While premises type captures broader contextual differences, a more refined inclusion of location-based variables could provide a deeper understanding of the spatial dynamics of bike theft.
 
-### Balancing Generalizability Across Neighborhood Contexts  
+### Balancing Generalizability Across Neighborhood Contexts
+
 The model focuses on thefts occurring in high-risk neighborhoods, which may limit its applicability to areas with lower theft incidence. While this approach allows for targeted insights into urban centers and densely populated regions, expanding the dataset to include a more diverse range of neighborhoods could enhance generalizability and provide a fuller picture of theft dynamics across different settings.
 
-## Enhancing Prevention: Directions for Future Research and Policy  
-Future research should aim to incorporate additional contextual variables, such as weather conditions, population density, and local crime rates, to improve predictive accuracy. Enhanced geospatial analyses, including hot spot mapping within neighborhoods, could further refine our understanding of theft patterns. Moreover, investigating the effectiveness of interventions such as secure parking zones, surveillance technologies, and community engagement programs could provide actionable insights to reduce bike theft. These findings could inform policies and practices aimed at improving bike security and safety in urban areas.
+## Enhancing Prevention: Directions for Future Research and Policy
 
+Future research should aim to incorporate additional contextual variables, such as weather conditions, population density, and local crime rates, to improve predictive accuracy. Enhanced geospatial analyses, including hot spot mapping within neighborhoods, could further refine our understanding of theft patterns. Moreover, investigating the effectiveness of interventions such as secure parking zones, surveillance technologies, and community engagement programs could provide actionable insights to reduce bike theft. These findings could inform policies and practices aimed at improving bike security and safety in urban areas.
 
 \newpage
 
 \appendix
 
 # Appendix {.unnumbered}
+
+# Idealized Survey Methodology
+
+## Survey Objectives
+
+The primary objective of this survey is to understand the factors influencing bike theft patterns in Toronto, with a focus on high-risk neighborhoods. The survey aims to capture data that cannot be directly observed through traditional theft reports, such as:
+
+-   Causal Relationships: Identifying how premises type, time of day, and bike value influence theft likelihood.
+-   Behavioral Insights: Exploring bike owners’ security habits and their perception of theft risks.
+-   Perception and Awareness: Assessing public understanding of theft risks and secure parking availability.
+-   Counterfactual Scenarios: Investigating how potential changes in infrastructure or security options might alter individual behavior.
+
+This survey is designed to directly inform strategies for targeted interventions and policy recommendations by capturing both perceptions and actual behaviors. By comparing responses from high-risk and low-risk neighborhoods, we aim to uncover nuanced insights into theft patterns and prevention opportunities.
+
+## Implementation Strategy
+
+### Sample Size and Target Audience
+
+The survey will focus on three key groups of participants:
+
+-   Bike Theft Victims: Individuals who have experienced theft within the last five years.
+-   Current Cyclists: Bike owners who actively use their bikes for commuting or recreation.
+-   Residents Near High- and Low-Risk Areas: To compare theft patterns across neighborhoods.
+
+The target sample size is set at **3,000 respondents**, divided as follows:
+
+-   1,000 participants from **high-risk neighborhoods**.
+-   1,000 participants from **low-risk neighborhoods**.
+-   1,000 individuals with **no prior experience of bike theft** to gather perceptions of theft risk.
+
+### Recruitment Channels
+
+To ensure diverse participation, we employ the following recruitment strategies:
+
+1.  **Digital Targeting**: Social media advertisements on platforms like Instagram, Facebook, and X (Twitter), geo-targeted to areas with reported theft incidents and high bike usage.
+2.  **Community Outreach**: Partnerships with local cycling groups, bike repair shops, and advocacy organizations to distribute the survey link.
+3.  **Email Distribution**: Outreach to residents through neighborhood associations and cycling networks.
+4.  **Incentives**: Participants receive a \$20 gift card for completing the survey.
+
+### Budget Allocation
+
+The survey has a total budget of **\$100,000**, allocated as follows:
+
+-   **\$20,000**: Digital advertising and outreach campaigns.
+-   **\$15,000**: Partnerships with cycling organizations for outreach.
+-   **\$65,000**: Participant incentives, ensuring a high response rate.
+
+## Survey Design Elements
+
+### Opening Message
+
+Participants will be welcomed with the following message:
+
+"Thank you for participating in our survey on bike thefts in Toronto. We aim to understand theft patterns and develop strategies to improve security for cyclists. Your input is invaluable and will help inform policies to reduce bike thefts. This survey will take approximately 5 minutes to complete, and your responses will remain anonymous. As a thank-you, you will receive a \$20 gift card."
+
+### Key Questions
+
+The survey includes structured questions targeting bike theft experiences and perceptions:
+
+1.  Have you experienced bike theft in the last five years?
+
+-   Yes/No
+
+2.  If yes, where did it occur?
+
+-   Home
+-   Commercial Area
+-   Transit Station
+-   Public Park
+-   Other
+
+3.  Did you report the theft to authorities?
+
+-   Yes/No/Other
+
+4.  Approximate value of the stolen bike?
+
+-   Open-ended
+
+5.  Select the word "Blue".
+
+-   Red
+-   Blue
+-   Orange
+-   Green
+
+6.  How do you secure your bike? Check all that apply:
+
+-   U-lock
+-   Chain lock
+-   Secure parking
+-   Other
+
+7.  Where do you usually park your bike?
+
+-   Street
+-   Garage
+-   Apartment Building
+-   Transit Station
+-   Other
+
+8.  On a scale of 1–5, how confident are you in your bike’s security measures?
+
+-   1 = Not confident, 5 = Very confident
+
+9.  Which time of day do you perceive as most vulnerable for bike thefts?
+
+-   Morning
+-   Afternoon
+-   Evening
+-   Night
+
+10. Which neighborhoods do you consider high-risk for bike thefts?
+
+-   Open-ended
+
+11. Are you aware of secure bike parking facilities in your area?
+
+-   Yes/No
+
+### Closing Message
+
+Participants receive a confirmation message: "Thank you for completing the survey! Your input will help us understand and reduce bike thefts in Toronto. Your \$20 gift card will be emailed within five business days.
+
+## Bias Mitigation Strategies
+
+To ensure accurate and reliable data, the survey implements the following bias mitigation strategies:
+
+1.  **Anonymity and Neutral Question Design**: Responses will remain confidential, and questions are designed to avoid leading participants toward specific answers.
+2.  **Survey Length and Engagement**: The survey is limited to 5 minutes, with a mix of question types to maintain participant interest.
+3.  **Monitoring Selection Bias**: Detailed non-response data will be collected, and statistical corrections will be applied to account for any potential bias.
+
+## Tradeoffs and Limitations
+Despite careful design, the survey faces several limitations:
+
+-   **Selection Bias**: Participants may disproportionately include individuals who have experienced theft or are particularly concerned about security.
+-   **Hypothetical Scenarios**: Responses to hypothetical questions may not fully align with real-world behaviors.
+-   **Generalizability**: Findings may reflect Toronto-specific dynamics and may not be directly applicable to other urban areas.
+
+Despite these limitations, this survey is a critical tool for exploring theft dynamics and informing effective prevention strategies. The insights gained will complement other data sources and contribute to a deeper understanding of bike theft patterns in Toronto.
 
 # Additional data details {#sec-data-details}
 
@@ -330,9 +485,8 @@ variable_list %>%
 ```
 
 ## Data visualization {#sec-data-details-visualizations}
-@fig-highrisk_summary is the Ranked Bar Plot for Top 10 High-Risk Neighborhoods.
-@fig-thefts_by_day shows the bike thefts count by the time of the day. 
-@fig-thefts_premises_type shows the bike thefts count by different type of premises.
+
+@fig-highrisk_summary is the Ranked Bar Plot for Top 10 High-Risk Neighborhoods. @fig-thefts_by_day shows the bike thefts count by the time of the day. @fig-thefts_premises_type shows the bike thefts count by different type of premises.
 
 ```{r}
 #| echo: false
@@ -402,10 +556,10 @@ analysis_data %>%
 
 ```
 
-
 # Model details {#sec-model-details}
 
 ## Posterior predictive check
+
 Figure @fig-post_dist shows the posterior predictive distribution, comparing the observed data (actual theft occurrences in high-risk neighborhoods) with predictions generated by the posterior distribution of our Bayesian logistic regression model. The close alignment between observed and predicted data indicates that the model is well-calibrated and effectively captures patterns in the data. This provides confidence that the model represents the underlying processes driving theft patterns and is capable of producing reliable inferences.
 
 ```{r}
@@ -454,8 +608,8 @@ posterior_vs_prior(first_model, size = 0.2) +
 
 ```
 
-
 ## Markov chain Monte Carlo Convergence Check
+
 Figures @fig-trace1 and @fig-trace2 display the trace plots for our Bayesian logistic regression model, providing a detailed assessment of the convergence of the Markov Chain Monte Carlo (MCMC) sampling process. These plots visualize the parameter chains across iterations for key predictors selected based on their relevance to theft patterns. Specifically, parameters like **Intercept**, **Log Bike Cost**, and representative **Premises Type** are shown due to their strong potential to influence theft likelihood. The trace plot reveal that the chains oscillate horizontally, overlap between chains, and lack any noticeable divergence, indicating stable sampling and effective convergence. This stability ensures that the model provides reliable estimates for analyzing theft risk factors in high-risk neighborhoods.
 
 ```{r}
@@ -476,7 +630,6 @@ plot(first_model, "trace", "PREMISES_TYPEOutside")
 plot(first_model, "trace", "PREMISES_TYPETransit")
 plot(first_model, "trace", "PREMISES_TYPEOther")
 ```
-
 
 ```{r}
 #| echo: false
@@ -503,6 +656,7 @@ plot(first_model, "trace", "time_of_dayNight")
 ```
 
 Figure @fig-rhat presents the Rhat diagnostic for the model parameters, a key measure of convergence in MCMC sampling. The Rhat statistic compares the variability within each chain to the variability between chains, providing insight into whether the chains have mixed well. In this model, all Rhat values are very close to 1 and remain well below the threshold of 1.05, indicating that the chains have converged effectively. This result reinforces the reliability of the posterior estimates and confirms that the sampling process has stabilized, ensuring the model’s robustness for inference.
+
 ```{r}
 #| echo: false
 #| eval: true
@@ -514,10 +668,10 @@ Figure @fig-rhat presents the Rhat diagnostic for the model parameters, a key me
 plot(first_model, "rhat")
 ```
 
-
 ### 90% Credibility Interval
 
 Figure @fig-modelresults1 displays the 90% credible intervals for the predictors in the Bayesian logistic regression model. These intervals illustrate the uncertainty surrounding each parameter estimate, allowing us to assess their significance and direction of effect. Parameters whose intervals do not cross zero are considered statistically significant, as they demonstrate a consistent association with the likelihood of bike theft in high-risk neighborhoods. For example, certain premises types show strong, consistent effects, while others, such as specific time-of-day variables, have wider intervals reflecting greater uncertainty. This visualization provides a clear summary of the model's results and highlights the most impactful predictors of theft risk.
+
 ```{r}
 #| echo: false
 #| eval: true
@@ -530,7 +684,6 @@ modelplot(first_model, conf_level = 0.90, size = 0.2) +
   labs(x = "90% credibility interval") +
   theme(axis.text.y = element_text(size = 6))
 ```
-
 
 \newpage
 
